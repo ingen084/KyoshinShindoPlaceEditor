@@ -130,6 +130,10 @@ namespace KyoshinShindoPlaceEditor
 			Enabled = false;
 			Cursor = Cursors.WaitCursor;
 
+			int? lastSelectedIndex = null;
+			if (listView1.SelectedItems.Count >= 1)
+				lastSelectedIndex = listView1.SelectedItems[0].Index;
+
 			listView1.BeginUpdate();
 
 			listView1.Items.Clear();
@@ -168,6 +172,12 @@ namespace KyoshinShindoPlaceEditor
 				interpolatedPictureBox4.Image = null;
 
 			listView1.EndUpdate();
+
+			if (lastSelectedIndex != null)
+			{
+				listView1.Items[(int)lastSelectedIndex].Selected = true;
+				listView1.EnsureVisible((int)lastSelectedIndex);
+			}
 
 			Enabled = true;
 			Cursor = Cursors.Default;
@@ -347,6 +357,17 @@ namespace KyoshinShindoPlaceEditor
 				point.IsSuspended = false;
 			else
 				point.IsSuspended = true;
+			UpdateListValue();
+		}
+
+		private void removePointToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var point = _points.FirstOrDefault(p => p.Code == listView1.SelectedItems[0].Text);
+			if (point == null)
+				return;
+
+			point.Point = null;
+
 			UpdateListValue();
 		}
 

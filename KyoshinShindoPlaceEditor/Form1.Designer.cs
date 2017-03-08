@@ -62,6 +62,7 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.button9 = new System.Windows.Forms.Button();
 			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.removePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -183,7 +184,7 @@
 			// 
 			this.interpolatedPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("interpolatedPictureBox1.Image")));
 			this.interpolatedPictureBox1.Interpolation = System.Drawing.Drawing2D.InterpolationMode.Default;
-			this.interpolatedPictureBox1.Location = new System.Drawing.Point(-259, -349);
+			this.interpolatedPictureBox1.Location = new System.Drawing.Point(-344, -520);
 			this.interpolatedPictureBox1.Name = "interpolatedPictureBox1";
 			this.interpolatedPictureBox1.Size = new System.Drawing.Size(1024, 1024);
 			this.interpolatedPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -355,9 +356,10 @@
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toggleSuspendToolStripMenuItem});
+            this.toggleSuspendToolStripMenuItem,
+            this.removePointToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(196, 26);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(254, 48);
 			this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
 			// 
 			// toggleSuspendToolStripMenuItem
@@ -418,6 +420,13 @@
 			this.checkBox2.Text = "取得座標非表示";
 			this.checkBox2.UseVisualStyleBackColor = true;
 			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+			// 
+			// removePointToolStripMenuItem
+			// 
+			this.removePointToolStripMenuItem.Name = "removePointToolStripMenuItem";
+			this.removePointToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+			this.removePointToolStripMenuItem.Text = "強震モニタ上での座標情報を削除(&R)";
+			this.removePointToolStripMenuItem.Click += new System.EventHandler(this.removePointToolStripMenuItem_Click);
 			// 
 			// Form1
 			// 
@@ -481,6 +490,7 @@
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.CheckBox checkBox2;
+		private System.Windows.Forms.ToolStripMenuItem removePointToolStripMenuItem;
 	}
 }
 
