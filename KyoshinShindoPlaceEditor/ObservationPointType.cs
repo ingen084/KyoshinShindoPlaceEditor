@@ -24,9 +24,9 @@ namespace KyoshinShindoPlaceEditor
 				case ObservationPointType.Unknown:
 					return "不明";
 				case ObservationPointType.KiK_net:
-					return "KiK-NET";
+					return "KiK-net";
 				case ObservationPointType.K_NET:
-					return "K-net";
+					return "K-NET";
 			}
 			return "エラー";
 		}

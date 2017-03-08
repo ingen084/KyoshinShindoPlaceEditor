@@ -65,6 +65,8 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.button10 = new System.Windows.Forms.Button();
 			this.button11 = new System.Windows.Forms.Button();
+			this.button12 = new System.Windows.Forms.Button();
+			this.button13 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -92,19 +94,15 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.button13);
+			this.splitContainer1.Panel2.Controls.Add(this.button12);
 			this.splitContainer1.Panel2.Controls.Add(this.button11);
 			this.splitContainer1.Panel2.Controls.Add(this.button10);
 			this.splitContainer1.Panel2.Controls.Add(this.button8);
-			this.splitContainer1.Panel2.Controls.Add(this.label1);
-			this.splitContainer1.Panel2.Controls.Add(this.button6);
-			this.splitContainer1.Panel2.Controls.Add(this.button5);
-			this.splitContainer1.Panel2.Controls.Add(this.button4);
-			this.splitContainer1.Panel2.Controls.Add(this.button3);
-			this.splitContainer1.Panel2.Controls.Add(this.button2);
 			this.splitContainer1.Panel2.Controls.Add(this.listView1);
 			this.splitContainer1.Panel2.Controls.Add(this.button1);
-			this.splitContainer1.Size = new System.Drawing.Size(1250, 752);
-			this.splitContainer1.SplitterDistance = 493;
+			this.splitContainer1.Size = new System.Drawing.Size(1184, 752);
+			this.splitContainer1.SplitterDistance = 466;
 			this.splitContainer1.TabIndex = 2;
 			// 
 			// splitContainer2
@@ -119,10 +117,16 @@
 			this.splitContainer2.Panel1.Controls.Add(this.button9);
 			this.splitContainer2.Panel1.Controls.Add(this.label5);
 			this.splitContainer2.Panel1.Controls.Add(this.button7);
+			this.splitContainer2.Panel1.Controls.Add(this.label1);
+			this.splitContainer2.Panel1.Controls.Add(this.button6);
 			this.splitContainer2.Panel1.Controls.Add(this.label4);
+			this.splitContainer2.Panel1.Controls.Add(this.button5);
 			this.splitContainer2.Panel1.Controls.Add(this.label3);
+			this.splitContainer2.Panel1.Controls.Add(this.button4);
 			this.splitContainer2.Panel1.Controls.Add(this.checkBox2);
+			this.splitContainer2.Panel1.Controls.Add(this.button3);
 			this.splitContainer2.Panel1.Controls.Add(this.checkBox1);
+			this.splitContainer2.Panel1.Controls.Add(this.button2);
 			this.splitContainer2.Panel1.Controls.Add(this.interpolatedPictureBox4);
 			this.splitContainer2.Panel1.Controls.Add(this.interpolatedPictureBox2);
 			this.splitContainer2.Panel1.Controls.Add(this.interpolatedPictureBox3);
@@ -131,14 +135,14 @@
 			// 
 			this.splitContainer2.Panel2.Controls.Add(this.label2);
 			this.splitContainer2.Panel2.Controls.Add(this.interpolatedPictureBox1);
-			this.splitContainer2.Size = new System.Drawing.Size(493, 752);
+			this.splitContainer2.Size = new System.Drawing.Size(466, 752);
 			this.splitContainer2.SplitterDistance = 472;
 			this.splitContainer2.TabIndex = 0;
 			// 
 			// button9
 			// 
 			this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button9.Location = new System.Drawing.Point(468, 3);
+			this.button9.Location = new System.Drawing.Point(441, 3);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(22, 23);
 			this.button9.TabIndex = 3;
@@ -240,7 +244,7 @@
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(334, 264);
+			this.label2.Location = new System.Drawing.Point(307, 264);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(160, 12);
 			this.label2.TabIndex = 1;
@@ -260,7 +264,7 @@
 			// button8
 			// 
 			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button8.Location = new System.Drawing.Point(617, 12);
+			this.button8.Location = new System.Drawing.Point(578, 12);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(124, 23);
 			this.button8.TabIndex = 5;
@@ -271,7 +275,7 @@
 			// button7
 			// 
 			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button7.Location = new System.Drawing.Point(387, 3);
+			this.button7.Location = new System.Drawing.Point(360, 3);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(75, 23);
 			this.button7.TabIndex = 4;
@@ -281,16 +285,18 @@
 			// 
 			// label1
 			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(137, 17);
+			this.label1.Location = new System.Drawing.Point(12, 451);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(125, 12);
+			this.label1.Size = new System.Drawing.Size(29, 12);
 			this.label1.TabIndex = 3;
-			this.label1.Text = "強震モニタ画像の拡大度";
+			this.label1.Text = "拡大";
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(371, 12);
+			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button6.Location = new System.Drawing.Point(147, 446);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(26, 23);
 			this.button6.TabIndex = 2;
@@ -300,7 +306,8 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(344, 12);
+			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button5.Location = new System.Drawing.Point(122, 446);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(26, 23);
 			this.button5.TabIndex = 2;
@@ -310,7 +317,8 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(317, 12);
+			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button4.Location = new System.Drawing.Point(97, 446);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(26, 23);
 			this.button4.TabIndex = 2;
@@ -320,7 +328,8 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(290, 12);
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button3.Location = new System.Drawing.Point(72, 446);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(26, 23);
 			this.button3.TabIndex = 2;
@@ -330,7 +339,8 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(263, 12);
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button2.Location = new System.Drawing.Point(47, 446);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(26, 23);
 			this.button2.TabIndex = 2;
@@ -355,7 +365,7 @@
 			this.listView1.Location = new System.Drawing.Point(3, 41);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(738, 708);
+			this.listView1.Size = new System.Drawing.Size(708, 708);
 			this.listView1.TabIndex = 1;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
@@ -363,7 +373,6 @@
 			// 
 			// CodeColumn
 			// 
-			this.CodeColumn.DisplayIndex = 2;
 			this.CodeColumn.Text = "観測点コード";
 			this.CodeColumn.Width = 80;
 			// 
@@ -385,7 +394,7 @@
 			// 
 			// PrefColumn
 			// 
-			this.PrefColumn.Text = "都道府県";
+			this.PrefColumn.Text = "大まかな地域";
 			this.PrefColumn.Width = 80;
 			// 
 			// LocationColumn
@@ -425,7 +434,7 @@
 			// 
 			this.button1.Location = new System.Drawing.Point(3, 12);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(58, 23);
+			this.button1.Size = new System.Drawing.Size(55, 23);
 			this.button1.TabIndex = 0;
 			this.button1.Text = "pbf保存";
 			this.button1.UseVisualStyleBackColor = true;
@@ -433,35 +442,56 @@
 			// 
 			// button10
 			// 
-			this.button10.Location = new System.Drawing.Point(67, 12);
+			this.button10.Location = new System.Drawing.Point(118, 12);
 			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(64, 23);
+			this.button10.Size = new System.Drawing.Size(55, 23);
 			this.button10.TabIndex = 6;
 			this.button10.Text = "csv保存";
 			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
 			// 
 			// button11
 			// 
-			this.button11.Location = new System.Drawing.Point(431, 12);
+			this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button11.Location = new System.Drawing.Point(459, 12);
 			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(180, 23);
+			this.button11.Size = new System.Drawing.Size(113, 23);
 			this.button11.TabIndex = 7;
-			this.button11.Text = "NIEDの観測点データからインポート";
+			this.button11.Text = "NIEDからインポート";
 			this.button11.UseVisualStyleBackColor = true;
 			this.button11.Click += new System.EventHandler(this.button11_Click);
+			// 
+			// button12
+			// 
+			this.button12.Location = new System.Drawing.Point(57, 12);
+			this.button12.Name = "button12";
+			this.button12.Size = new System.Drawing.Size(55, 23);
+			this.button12.TabIndex = 8;
+			this.button12.Text = "pbf読込";
+			this.button12.UseVisualStyleBackColor = true;
+			this.button12.Click += new System.EventHandler(this.button12_Click);
+			// 
+			// button13
+			// 
+			this.button13.Location = new System.Drawing.Point(172, 12);
+			this.button13.Name = "button13";
+			this.button13.Size = new System.Drawing.Size(55, 23);
+			this.button13.TabIndex = 9;
+			this.button13.Text = "csv読込";
+			this.button13.UseVisualStyleBackColor = true;
+			this.button13.Click += new System.EventHandler(this.button13_Click);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1250, 752);
+			this.ClientSize = new System.Drawing.Size(1184, 752);
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "Form1";
 			this.Text = "強震モニタ震度情報取得座標エディタ";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
-			this.splitContainer1.Panel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.splitContainer2.Panel1.ResumeLayout(false);
@@ -515,6 +545,8 @@
 		private System.Windows.Forms.ToolStripMenuItem removePointToolStripMenuItem;
 		private System.Windows.Forms.Button button10;
 		private System.Windows.Forms.Button button11;
+		private System.Windows.Forms.Button button13;
+		private System.Windows.Forms.Button button12;
 	}
 }
 

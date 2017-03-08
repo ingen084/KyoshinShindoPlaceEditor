@@ -96,11 +96,7 @@ namespace KyoshinShindoPlaceEditor
 
 			UpdateImage();
 
-			if (File.Exists("ShindoObsPoints.pbf"))
-				using (var stream = new FileStream("ShindoObsPoints.pbf", FileMode.Open))
-					_points = Serializer.Deserialize<List<ObservationPoint>>(stream);
-			else
-				_points = new List<ObservationPoint>();
+			_points = new List<ObservationPoint>();
 
 			UpdateListValue();
 		}
@@ -257,9 +253,102 @@ namespace KyoshinShindoPlaceEditor
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			using (var stream = new FileStream("ShindoObsPoints.pbf", FileMode.Create))
-				Serializer.Serialize(stream, _points);
+			if (MessageBox.Show("保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+				return;
+			try
+			{
+				using (var stream = new FileStream("ShindoObsPoints.pbf", FileMode.Create))
+					Serializer.Serialize(stream, _points);
+				UpdateListValue();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("保存に失敗しました。\n" + ex, null);
+			}
+		}
+
+		private void button10_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+				return;
+			try
+			{
+				using (var stream = new StreamWriter("ShindoObsPoints.csv"))
+					foreach (var point in _points)
+						stream.WriteLine($"{(int)point.Type},{point.Code},{point.IsSuspended},{point.Name},{point.Region},{point.Location.Latitude},{point.Location.Longitude},{point.Point?.X.ToString() ?? ""},{point.Point?.Y.ToString() ?? ""}");
+				UpdateListValue();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("保存に失敗しました。\n" + ex, null);
+			}
+		}
+
+		private void button12_Click(object sender, EventArgs e)
+		{
+			if (!File.Exists("ShindoObsPoints.pbf"))
+			{
+				MessageBox.Show("ShindoObsPoints.pbfが見つかりません。", null);
+				return;
+			}
+
+			if (MessageBox.Show("現状のデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+				return;
+
+			using (var stream = new FileStream("ShindoObsPoints.pbf", FileMode.Open))
+				_points = Serializer.Deserialize<List<ObservationPoint>>(stream);
+
 			UpdateListValue();
+		}
+
+		private void button13_Click(object sender, EventArgs e)
+		{
+			if (!File.Exists("ShindoObsPoints.csv"))
+			{
+				MessageBox.Show("ShindoObsPoints.csvが見つかりません。", null);
+				return;
+			}
+
+			if (MessageBox.Show("現状のデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+				return;
+
+			var addedCount = 0;
+			var errorCount = 0;
+
+			_points = new List<ObservationPoint>();
+
+			using (var reader = new StreamReader("ShindoObsPoints.csv"))
+			{
+				while (reader.Peek() >= 0)
+				{
+					try
+					{
+						var strings = reader.ReadLine().Split(',');
+
+						var point = new ObservationPoint()
+						{
+							Type = (ObservationPointType)int.Parse(strings[0]),
+							Code = strings[1],
+							IsSuspended = bool.Parse(strings[2]),
+							Name = strings[3],
+							Region = strings[4],
+							Location = new Location(float.Parse(strings[5]), float.Parse(strings[6])),
+							Point = null
+						};
+						if (!string.IsNullOrWhiteSpace(strings[7]) && !string.IsNullOrWhiteSpace(strings[8]))
+							point.Point = new Point2(int.Parse(strings[7]), int.Parse(strings[8]));
+						_points.Add(point);
+						addedCount++;
+					}
+					catch
+					{
+						errorCount++;
+					}
+				}
+			}
+
+			UpdateListValue();
+			MessageBox.Show($"レポート\n成功:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void button7_Click(object sender, EventArgs e)
@@ -277,6 +366,7 @@ namespace KyoshinShindoPlaceEditor
 			var addedCount = 0;
 			var addId = 0;
 			var replaceCount = 0;
+			var errorCount = 0;
 
 			using (var reader = new StreamReader("Kansokuten.dat", Encoding.GetEncoding("Shift-JIS")))
 			{
@@ -287,30 +377,37 @@ namespace KyoshinShindoPlaceEditor
 				}
 				while (reader.Peek() >= 0)
 				{
-					var strings = reader.ReadLine().Split(',');
+					try
+					{
+						var strings = reader.ReadLine().Split(',');
 
-					var point = _points.FirstOrDefault(p => p.Type == strings[2].ToObservationPointType() && p.Name == strings[3] && (strings[4] == "その他" || p.Region.StartsWith(strings[4])));
-					//あるとき!
-					if (point != null)
-					{
-						point.IsSuspended = strings[0] == "0";
-						point.Point = new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12]));
-						replaceCount++;
-					}
-					//ないとき…
-					else
-					{
-						while (_points.Any(p => p.Code == $"_EQW{addId}"))
+						var point = _points.FirstOrDefault(p => p.Type == strings[2].ToObservationPointType() && p.Name == strings[3] && (strings[4] == "その他" || p.Region.StartsWith(strings[4])));
+						//あるとき!
+						if (point != null)
+						{
+							point.IsSuspended = strings[0] == "0";
+							point.Point = new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12]));
+							replaceCount++;
+						}
+						//ないとき…
+						else
+						{
+							while (_points.Any(p => p.Code == $"_EQW{addId}"))
+								addId++;
+
+							_points.Add(new ObservationPoint(strings[2].ToObservationPointType(), $"_EQW{addId}", strings[0] == "0", strings[3], strings[4], new Location(float.Parse(strings[8]), float.Parse(strings[7])), new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12]))));
+							addedCount++;
 							addId++;
-
-						_points.Add(new ObservationPoint(strings[2].ToObservationPointType(), $"_EQW{addId}", strings[0] == "0", strings[3], strings[4], new Location(float.Parse(strings[8]), float.Parse(strings[7])), new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12]))));
-						addedCount++;
-						addId++;
+						}
+					}
+					catch
+					{
+						errorCount++;
 					}
 				}
 			}
 			UpdateListValue();
-			MessageBox.Show($"レポート\n置き換え:{replaceCount}件\n追加:{addedCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show($"レポート\n置き換え:{replaceCount}件\n追加:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void button11_Click(object sender, EventArgs e)
@@ -327,34 +424,49 @@ namespace KyoshinShindoPlaceEditor
 			}
 
 			var addedCount = 0;
+			var errorCount = 0;
 
 			using (var reader = new StreamReader("sitepub_kik_sj.csv", Encoding.GetEncoding("Shift-JIS")))
 				while (reader.Peek() >= 0)
 				{
-					var strings = reader.ReadLine().Split(',');
+					try
+					{
+						var strings = reader.ReadLine().Split(',');
 
-					//発見したら帰る
-					if (_points.Any(p => p.Type == ObservationPointType.KiK_net && p.Code == strings[0] && p.Name == strings[1] && p.Region == strings[7]))
-						continue;
+						//発見したら帰る
+						if (_points.Any(p => p.Type == ObservationPointType.KiK_net && p.Code == strings[0] && p.Name == strings[1] && p.Region == strings[7]))
+							continue;
 
-					_points.Add(new ObservationPoint(ObservationPointType.KiK_net, strings[0], strings[13] == "suspension", strings[1], strings[7], new Location(float.Parse(strings[3]), float.Parse(strings[4]))));
-					addedCount++;
+						_points.Add(new ObservationPoint(ObservationPointType.KiK_net, strings[0], strings[13] == "suspension", strings[1], strings[7], new Location(float.Parse(strings[3]), float.Parse(strings[4]))));
+						addedCount++;
+					}
+					catch
+					{
+						errorCount++;
+					}
 				}
 			using (var reader = new StreamReader("sitepub_knet_sj.csv", Encoding.GetEncoding("Shift-JIS")))
 				while (reader.Peek() >= 0)
 				{
-					var strings = reader.ReadLine().Split(',');
+					try
+					{
+						var strings = reader.ReadLine().Split(',');
 
-					//発見したら帰る
-					if (_points.Any(p => p.Type == ObservationPointType.K_NET && p.Code == strings[0] && p.Name == strings[1] && p.Region == strings[7]))
-						continue;
+						//発見したら帰る
+						if (_points.Any(p => p.Type == ObservationPointType.K_NET && p.Code == strings[0] && p.Name == strings[1] && p.Region == strings[7]))
+							continue;
 
-					_points.Add(new ObservationPoint(ObservationPointType.K_NET, strings[0], strings[13] == "suspension", strings[1], strings[7], new Location(float.Parse(strings[3]), float.Parse(strings[4]))));
-					addedCount++;
+						_points.Add(new ObservationPoint(ObservationPointType.K_NET, strings[0], strings[13] == "suspension", strings[1], strings[7], new Location(float.Parse(strings[3]), float.Parse(strings[4]))));
+						addedCount++;
+					}
+					catch
+					{
+						errorCount++;
+					}
 				}
 
 			UpdateListValue();
-			MessageBox.Show($"レポート\n置き換え:非対応\n追加:{addedCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show($"レポート\n置き換え:非対応\n追加:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -406,6 +518,7 @@ namespace KyoshinShindoPlaceEditor
 		private void button9_Click(object sender, EventArgs e)
 		{
 			MessageBox.Show(@"**操作方法**
+画像更新ボタンを押すと現在の時間の強震モニタの画像に更新されます。
 右リストの項目を選択した状態で右クリック	ポインタの位置に参照地点を上書きします。
 左ドラッグ	地図移動	※だいぶ手抜き実装なので画面外に出してしまわないように気をつけてください。
 中(ホイールボタン)クリック	ポインタが参照地点上である場合はその地点が右リストから選択されます。", "操作方法");
