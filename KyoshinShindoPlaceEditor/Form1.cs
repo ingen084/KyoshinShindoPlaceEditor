@@ -294,7 +294,7 @@ namespace KyoshinShindoPlaceEditor
 			{
 				if (!reader.ReadLine().StartsWith("v5 Kyoshin Monitor Base Data for EqWatch"))
 				{
-					MessageBox.Show("対応していないEqWatchのバージョンです。", null);
+					MessageBox.Show("対応していないEqWatchファイルのバージョンです。", null);
 					return;
 				}
 				while (reader.Peek() >= 0)
@@ -302,9 +302,9 @@ namespace KyoshinShindoPlaceEditor
 					var strings = reader.ReadLine().Split(',');
 
 					//あるとき!
-					if (_points.Any(p => p.Type == strings[2].ToObservationPointType() && p.Name == strings[3] && p.Region.StartsWith(strings[4])))
+					if (_points.Any(p => p.Type == strings[2].ToObservationPointType() && p.Name == strings[3] && (strings[4] == "その他" || p.Region.StartsWith(strings[4]))))
 					{
-						var point = _points.First(p => p.Type == strings[2].ToObservationPointType() && p.Name == strings[3] && p.Region.StartsWith(strings[4]));
+						var point = _points.First(p => p.Type == strings[2].ToObservationPointType() && p.Name == strings[3] && (strings[4] == "その他" || p.Region.StartsWith(strings[4])));
 						point.IsSuspended = strings[0] == "0";
 						point.Point = new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12]));
 						replaceCount++;

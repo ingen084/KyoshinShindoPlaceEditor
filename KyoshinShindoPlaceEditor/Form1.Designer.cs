@@ -32,6 +32,12 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.button9 = new System.Windows.Forms.Button();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.interpolatedPictureBox4 = new KyoshinShindoPlaceEditor.InterpolatedPictureBox();
 			this.interpolatedPictureBox2 = new KyoshinShindoPlaceEditor.InterpolatedPictureBox();
 			this.interpolatedPictureBox3 = new KyoshinShindoPlaceEditor.InterpolatedPictureBox();
@@ -53,16 +59,10 @@
 			this.PrefColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.LocationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.PointColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.button1 = new System.Windows.Forms.Button();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toggleSuspendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.label3 = new System.Windows.Forms.Label();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.button9 = new System.Windows.Forms.Button();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
 			this.removePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -131,6 +131,69 @@
 			this.splitContainer2.SplitterDistance = 472;
 			this.splitContainer2.TabIndex = 0;
 			// 
+			// button9
+			// 
+			this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button9.Location = new System.Drawing.Point(468, 3);
+			this.button9.Name = "button9";
+			this.button9.Size = new System.Drawing.Size(22, 23);
+			this.button9.TabIndex = 3;
+			this.button9.Text = "?";
+			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Click += new System.EventHandler(this.button9_Click);
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.ForeColor = System.Drawing.Color.Gray;
+			this.label5.Location = new System.Drawing.Point(213, 3);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(53, 12);
+			this.label5.TabIndex = 2;
+			this.label5.Text = "■休止中";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.ForeColor = System.Drawing.Color.Orange;
+			this.label4.Location = new System.Drawing.Point(161, 3);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(46, 12);
+			this.label4.TabIndex = 2;
+			this.label4.Text = "■K-net";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.ForeColor = System.Drawing.Color.Red;
+			this.label3.Location = new System.Drawing.Point(93, 3);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(62, 12);
+			this.label3.TabIndex = 2;
+			this.label3.Text = "■KiK-NET";
+			// 
+			// checkBox2
+			// 
+			this.checkBox2.AutoSize = true;
+			this.checkBox2.Location = new System.Drawing.Point(3, 19);
+			this.checkBox2.Name = "checkBox2";
+			this.checkBox2.Size = new System.Drawing.Size(108, 16);
+			this.checkBox2.TabIndex = 1;
+			this.checkBox2.Text = "取得座標非表示";
+			this.checkBox2.UseVisualStyleBackColor = true;
+			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+			// 
+			// checkBox1
+			// 
+			this.checkBox1.AutoSize = true;
+			this.checkBox1.Location = new System.Drawing.Point(3, 3);
+			this.checkBox1.Name = "checkBox1";
+			this.checkBox1.Size = new System.Drawing.Size(84, 16);
+			this.checkBox1.TabIndex = 1;
+			this.checkBox1.Text = "背景非表示";
+			this.checkBox1.UseVisualStyleBackColor = true;
+			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+			// 
 			// interpolatedPictureBox4
 			// 
 			this.interpolatedPictureBox4.BackColor = System.Drawing.Color.Transparent;
@@ -160,7 +223,6 @@
 			// interpolatedPictureBox3
 			// 
 			this.interpolatedPictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-			this.interpolatedPictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("interpolatedPictureBox3.Image")));
 			this.interpolatedPictureBox3.Interpolation = System.Drawing.Drawing2D.InterpolationMode.Default;
 			this.interpolatedPictureBox3.Location = new System.Drawing.Point(0, 0);
 			this.interpolatedPictureBox3.Name = "interpolatedPictureBox3";
@@ -325,33 +387,12 @@
 			// LocationColumn
 			// 
 			this.LocationColumn.Text = "観測点地理座標";
-			this.LocationColumn.Width = 180;
+			this.LocationColumn.Width = 160;
 			// 
 			// PointColumn
 			// 
 			this.PointColumn.Text = "強震モニタ上での座標";
-			this.PointColumn.Width = 130;
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(3, 12);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(123, 23);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "編集結果を保存";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// checkBox1
-			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(3, 3);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(84, 16);
-			this.checkBox1.TabIndex = 1;
-			this.checkBox1.Text = "背景非表示";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+			this.PointColumn.Width = 120;
 			// 
 			// contextMenuStrip1
 			// 
@@ -365,61 +406,9 @@
 			// toggleSuspendToolStripMenuItem
 			// 
 			this.toggleSuspendToolStripMenuItem.Name = "toggleSuspendToolStripMenuItem";
-			this.toggleSuspendToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+			this.toggleSuspendToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
 			this.toggleSuspendToolStripMenuItem.Text = "休止状態を切り替える(&T)";
 			this.toggleSuspendToolStripMenuItem.Click += new System.EventHandler(this.toggleSuspendToolStripMenuItem_Click);
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.ForeColor = System.Drawing.Color.Red;
-			this.label3.Location = new System.Drawing.Point(93, 3);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(62, 12);
-			this.label3.TabIndex = 2;
-			this.label3.Text = "■KiK-NET";
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.ForeColor = System.Drawing.Color.Orange;
-			this.label4.Location = new System.Drawing.Point(161, 3);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(46, 12);
-			this.label4.TabIndex = 2;
-			this.label4.Text = "■K-net";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.ForeColor = System.Drawing.Color.Gray;
-			this.label5.Location = new System.Drawing.Point(213, 3);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(53, 12);
-			this.label5.TabIndex = 2;
-			this.label5.Text = "■休止中";
-			// 
-			// button9
-			// 
-			this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button9.Location = new System.Drawing.Point(468, 3);
-			this.button9.Name = "button9";
-			this.button9.Size = new System.Drawing.Size(22, 23);
-			this.button9.TabIndex = 3;
-			this.button9.Text = "?";
-			this.button9.UseVisualStyleBackColor = true;
-			this.button9.Click += new System.EventHandler(this.button9_Click);
-			// 
-			// checkBox2
-			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(3, 19);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(108, 16);
-			this.checkBox2.TabIndex = 1;
-			this.checkBox2.Text = "取得座標非表示";
-			this.checkBox2.UseVisualStyleBackColor = true;
-			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
 			// 
 			// removePointToolStripMenuItem
 			// 
@@ -427,6 +416,16 @@
 			this.removePointToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
 			this.removePointToolStripMenuItem.Text = "強震モニタ上での座標情報を削除(&R)";
 			this.removePointToolStripMenuItem.Click += new System.EventHandler(this.removePointToolStripMenuItem_Click);
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(3, 12);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(123, 23);
+			this.button1.TabIndex = 0;
+			this.button1.Text = "編集結果を保存";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// Form1
 			// 
