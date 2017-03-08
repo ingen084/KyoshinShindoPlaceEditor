@@ -11,8 +11,8 @@ namespace KyoshinShindoPlaceEditor
 	public enum ObservationPointType
 	{
 		Unknown,
-		KiK_NET,
-		K_net,
+		KiK_net,
+		K_NET,
 	}
 
 	public static class ObservationPointTypeExtensions
@@ -23,15 +23,15 @@ namespace KyoshinShindoPlaceEditor
 			{
 				case ObservationPointType.Unknown:
 					return "不明";
-				case ObservationPointType.KiK_NET:
+				case ObservationPointType.KiK_net:
 					return "KiK-NET";
-				case ObservationPointType.K_net:
+				case ObservationPointType.K_NET:
 					return "K-net";
 			}
 			return "エラー";
 		}
 
 		public static ObservationPointType ToObservationPointType(this string str)
-			=> str == "1" ? ObservationPointType.KiK_NET : ObservationPointType.K_net;
+			=> str == "1" ? ObservationPointType.KiK_net : ObservationPointType.K_NET;
 	}
 }

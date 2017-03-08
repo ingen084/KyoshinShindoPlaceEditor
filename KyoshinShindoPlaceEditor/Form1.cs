@@ -96,26 +96,11 @@ namespace KyoshinShindoPlaceEditor
 
 			UpdateImage();
 
-			if (!File.Exists("ShindoObsPoints.pbf"))
-			{
-				_points = new List<ObservationPoint>();
-
-				using (var reader = new StreamReader("sitepub_kik_sj.csv", Encoding.GetEncoding("Shift-JIS")))
-					while (reader.Peek() >= 0)
-					{
-						var strings = reader.ReadLine().Split(',');
-						_points.Add(new ObservationPoint(ObservationPointType.KiK_NET, strings[0], strings[13] == "suspension", strings[1], strings[7], new Location(float.Parse(strings[3]), float.Parse(strings[4]))));
-					}
-				using (var reader = new StreamReader("sitepub_knet_sj.csv", Encoding.GetEncoding("Shift-JIS")))
-					while (reader.Peek() >= 0)
-					{
-						var strings = reader.ReadLine().Split(',');
-						_points.Add(new ObservationPoint(ObservationPointType.K_net, strings[0], strings[13] == "suspension", strings[1], strings[7], new Location(float.Parse(strings[3]), float.Parse(strings[4]))));
-					}
-			}
-			else
+			if (File.Exists("ShindoObsPoints.pbf"))
 				using (var stream = new FileStream("ShindoObsPoints.pbf", FileMode.Open))
 					_points = Serializer.Deserialize<List<ObservationPoint>>(stream);
+			else
+				_points = new List<ObservationPoint>();
 
 			UpdateListValue();
 		}
@@ -155,11 +140,11 @@ namespace KyoshinShindoPlaceEditor
 
 					switch (point.Type)
 					{
-						case ObservationPointType.KiK_NET:
+						case ObservationPointType.KiK_net:
 							color = Color.Red;
 							break;
 
-						case ObservationPointType.K_net:
+						case ObservationPointType.K_NET:
 							color = Color.Orange;
 							break;
 					}
@@ -304,10 +289,10 @@ namespace KyoshinShindoPlaceEditor
 				{
 					var strings = reader.ReadLine().Split(',');
 
+					var point = _points.FirstOrDefault(p => p.Type == strings[2].ToObservationPointType() && p.Name == strings[3] && (strings[4] == "その他" || p.Region.StartsWith(strings[4])));
 					//あるとき!
-					if (_points.Any(p => p.Type == strings[2].ToObservationPointType() && p.Name == strings[3] && (strings[4] == "その他" || p.Region.StartsWith(strings[4]))))
+					if (point != null)
 					{
-						var point = _points.First(p => p.Type == strings[2].ToObservationPointType() && p.Name == strings[3] && (strings[4] == "その他" || p.Region.StartsWith(strings[4])));
 						point.IsSuspended = strings[0] == "0";
 						point.Point = new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12]));
 						replaceCount++;
@@ -326,6 +311,50 @@ namespace KyoshinShindoPlaceEditor
 			}
 			UpdateListValue();
 			MessageBox.Show($"レポート\n置き換え:{replaceCount}件\n追加:{addedCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+		private void button11_Click(object sender, EventArgs e)
+		{
+			if (!File.Exists("sitepub_kik_sj.csv"))
+			{
+				MessageBox.Show("sitepub_kik_sj.csvが見つかりません。", null);
+				return;
+			}
+			if (!File.Exists("sitepub_knet_sj.csv"))
+			{
+				MessageBox.Show("sitepub_knet_sj.csvが見つかりません。", null);
+				return;
+			}
+
+			var addedCount = 0;
+
+			using (var reader = new StreamReader("sitepub_kik_sj.csv", Encoding.GetEncoding("Shift-JIS")))
+				while (reader.Peek() >= 0)
+				{
+					var strings = reader.ReadLine().Split(',');
+
+					//発見したら帰る
+					if (_points.Any(p => p.Type == ObservationPointType.KiK_net && p.Code == strings[0] && p.Name == strings[1] && p.Region == strings[7]))
+						continue;
+
+					_points.Add(new ObservationPoint(ObservationPointType.KiK_net, strings[0], strings[13] == "suspension", strings[1], strings[7], new Location(float.Parse(strings[3]), float.Parse(strings[4]))));
+					addedCount++;
+				}
+			using (var reader = new StreamReader("sitepub_knet_sj.csv", Encoding.GetEncoding("Shift-JIS")))
+				while (reader.Peek() >= 0)
+				{
+					var strings = reader.ReadLine().Split(',');
+
+					//発見したら帰る
+					if (_points.Any(p => p.Type == ObservationPointType.K_NET && p.Code == strings[0] && p.Name == strings[1] && p.Region == strings[7]))
+						continue;
+
+					_points.Add(new ObservationPoint(ObservationPointType.K_NET, strings[0], strings[13] == "suspension", strings[1], strings[7], new Location(float.Parse(strings[3]), float.Parse(strings[4]))));
+					addedCount++;
+				}
+
+			UpdateListValue();
+			MessageBox.Show($"レポート\n置き換え:非対応\n追加:{addedCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void checkBox1_CheckedChanged(object sender, EventArgs e)

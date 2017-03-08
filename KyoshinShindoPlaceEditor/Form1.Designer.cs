@@ -63,6 +63,8 @@
 			this.toggleSuspendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.removePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.button1 = new System.Windows.Forms.Button();
+			this.button10 = new System.Windows.Forms.Button();
+			this.button11 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -90,8 +92,9 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.button11);
+			this.splitContainer1.Panel2.Controls.Add(this.button10);
 			this.splitContainer1.Panel2.Controls.Add(this.button8);
-			this.splitContainer1.Panel2.Controls.Add(this.button7);
 			this.splitContainer1.Panel2.Controls.Add(this.label1);
 			this.splitContainer1.Panel2.Controls.Add(this.button6);
 			this.splitContainer1.Panel2.Controls.Add(this.button5);
@@ -115,6 +118,7 @@
 			// 
 			this.splitContainer2.Panel1.Controls.Add(this.button9);
 			this.splitContainer2.Panel1.Controls.Add(this.label5);
+			this.splitContainer2.Panel1.Controls.Add(this.button7);
 			this.splitContainer2.Panel1.Controls.Add(this.label4);
 			this.splitContainer2.Panel1.Controls.Add(this.label3);
 			this.splitContainer2.Panel1.Controls.Add(this.checkBox2);
@@ -256,18 +260,18 @@
 			// button8
 			// 
 			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button8.Location = new System.Drawing.Point(495, 12);
+			this.button8.Location = new System.Drawing.Point(617, 12);
 			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(165, 23);
+			this.button8.Size = new System.Drawing.Size(124, 23);
 			this.button8.TabIndex = 5;
-			this.button8.Text = "EqWatchのデータをインポート";
+			this.button8.Text = "EqWatchからインポート";
 			this.button8.UseVisualStyleBackColor = true;
 			this.button8.Click += new System.EventHandler(this.button8_Click);
 			// 
 			// button7
 			// 
 			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button7.Location = new System.Drawing.Point(666, 12);
+			this.button7.Location = new System.Drawing.Point(387, 3);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(75, 23);
 			this.button7.TabIndex = 4;
@@ -286,7 +290,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Location = new System.Drawing.Point(396, 12);
+			this.button6.Location = new System.Drawing.Point(371, 12);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(26, 23);
 			this.button6.TabIndex = 2;
@@ -296,7 +300,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(364, 12);
+			this.button5.Location = new System.Drawing.Point(344, 12);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(26, 23);
 			this.button5.TabIndex = 2;
@@ -306,7 +310,7 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(332, 12);
+			this.button4.Location = new System.Drawing.Point(317, 12);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(26, 23);
 			this.button4.TabIndex = 2;
@@ -316,7 +320,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(300, 12);
+			this.button3.Location = new System.Drawing.Point(290, 12);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(26, 23);
 			this.button3.TabIndex = 2;
@@ -326,7 +330,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(268, 12);
+			this.button2.Location = new System.Drawing.Point(263, 12);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(26, 23);
 			this.button2.TabIndex = 2;
@@ -421,11 +425,30 @@
 			// 
 			this.button1.Location = new System.Drawing.Point(3, 12);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(123, 23);
+			this.button1.Size = new System.Drawing.Size(58, 23);
 			this.button1.TabIndex = 0;
-			this.button1.Text = "編集結果を保存";
+			this.button1.Text = "pbf保存";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// button10
+			// 
+			this.button10.Location = new System.Drawing.Point(67, 12);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(64, 23);
+			this.button10.TabIndex = 6;
+			this.button10.Text = "csv保存";
+			this.button10.UseVisualStyleBackColor = true;
+			// 
+			// button11
+			// 
+			this.button11.Location = new System.Drawing.Point(431, 12);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(180, 23);
+			this.button11.TabIndex = 7;
+			this.button11.Text = "NIEDの観測点データからインポート";
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.button11_Click);
 			// 
 			// Form1
 			// 
@@ -490,6 +513,8 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.CheckBox checkBox2;
 		private System.Windows.Forms.ToolStripMenuItem removePointToolStripMenuItem;
+		private System.Windows.Forms.Button button10;
+		private System.Windows.Forms.Button button11;
 	}
 }
 
