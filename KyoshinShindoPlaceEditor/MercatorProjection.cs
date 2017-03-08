@@ -60,69 +60,6 @@ namespace KyoshinShindoPlaceEditor
 		public static Location PixelToLatLng(Point2 pixel, double zoom)
 			=> PointToLatLng(PixelToPoint(pixel, zoom));
 
-		//public static RectangleF RectangleToPixel(Rectangle rectangle, double zoom = 0)
-		//{
-		//	var pixel = new RectangleF();
-		//	pixel.X = (float)(rectangle.X * Math.Pow(2, zoom));
-		//	pixel.Y = (float)(rectangle.Y * Math.Pow(2, zoom));
-		//	pixel.Width = (float)(rectangle.Width * Math.Pow(2, zoom));
-		//	pixel.Height = (float)(rectangle.Height * Math.Pow(2, zoom));
-
-		//	return pixel;
-		//}
-
-		public static Point2 LatLngToTile(Location location, double zoom)
-		{
-			var pixel = LatLngToPixel(location, zoom);
-
-			var tile = new Point2()
-			{
-				X = Math.Floor(pixel.X / TileSize),
-				Y = Math.Floor(pixel.Y / TileSize)
-			};
-			return tile;
-		}
-		public static Point2 PointToTile(Point2 point, double zoom)
-		{
-			var pixel = PointToPixel(point, zoom);
-
-			var tile = new Point2()
-			{
-				X = Math.Floor(pixel.X / TileSize),
-				Y = Math.Floor(pixel.Y / TileSize)
-			};
-			return tile;
-		}
-		public static Point2 PixelToTile(Point2 pixel)
-		{
-			var tile = new Point2()
-			{
-				X = Math.Floor(pixel.X / TileSize),
-				Y = Math.Floor(pixel.Y / TileSize)
-			};
-			return tile;
-		}
-
-		public static Point2 PointToTilePos(Point2 point, double zoom)
-		{
-			var pixel = PointToPixel(point, zoom);
-			var inner = new Point2()
-			{
-				X = pixel.X % TileSize,
-				Y = pixel.Y % TileSize
-			};
-			return inner;
-		}
-		public static Point2 PixelToTilePos(Point2 pixel)
-		{
-			var inner = new Point2()
-			{
-				X = pixel.X % TileSize,
-				Y = pixel.Y % TileSize
-			};
-			return inner;
-		}
-
 		public static double Bound(double value, double? opt_min, double? opt_max)
 		{
 			if (opt_min != null)

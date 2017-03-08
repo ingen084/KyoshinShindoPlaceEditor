@@ -16,6 +16,9 @@ namespace ReadDataExample.PbfClass
 		[ProtoMember(2)]
 		public int Y { get; set; }
 
+		public override string ToString()
+			=> $"X:{X} Y:{Y}";
+
 		//TODO Formで使う場合はここのコメントアウトを外すと自動でキャストしてくれるようになります。
 		/*
 		public static implicit operator Point2(Point point)

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -45,6 +46,8 @@ namespace KyoshinShindoPlaceEditor
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			Text += " - " + Assembly.GetExecutingAssembly().GetName().Version;
+
 			interpolatedPictureBox3.ImageLocation = "base_map_w.gif";
 
 			interpolatedPictureBox4.MouseDown += (s2, e2) =>

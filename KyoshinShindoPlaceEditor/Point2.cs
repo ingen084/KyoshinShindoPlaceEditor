@@ -94,12 +94,4 @@ namespace KyoshinShindoPlaceEditor
 		public static implicit operator Size(Point2 point)
 			=> new Size((int)point.X, (int)point.Y);
 	}
-
-	public static class Point2Extensions
-	{
-		public static Point2 ToPixel(this Location loc, double zoom)
-			=> MercatorProjection.LatLngToPixel(loc, zoom);
-		public static Location ToLocation(this Point2 loc, double zoom)
-			=> MercatorProjection.PixelToLatLng(loc, zoom);
-	}
 }

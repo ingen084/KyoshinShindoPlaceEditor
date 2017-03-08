@@ -13,7 +13,7 @@ namespace ReadDataExample
 	{
 		static void Main(string[] args)
 		{
-			if (File.Exists("ShindoObsPoints.pbf"))
+			if (!File.Exists("ShindoObsPoints.pbf"))
 			{
 				Console.WriteLine("このサンプルを動かすにはKyoshinShindoPlaceEditorで生成したShindoObsPoints.pbfをexe直下に置く必要があります。\nEnterキーで終了...");
 				Console.ReadLine();
