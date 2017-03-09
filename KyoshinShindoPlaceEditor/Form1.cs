@@ -168,7 +168,7 @@ namespace KyoshinShindoPlaceEditor
 			Text = oldText;
 		}
 
-		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+		private void ListViewSelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (listView1.SelectedItems.Count == 0)
 				return;
@@ -192,34 +192,34 @@ namespace KyoshinShindoPlaceEditor
 
 		#region
 
-		private void button2_Click(object sender, EventArgs e)
+		private void KyoshinZoomChange_1(object sender, EventArgs e)
 		{
 			MonitorZoom = 1;
 		}
 
-		private void button3_Click(object sender, EventArgs e)
+		private void KyoshinZoomChange_2(object sender, EventArgs e)
 		{
 			MonitorZoom = 2;
 		}
 
-		private void button4_Click(object sender, EventArgs e)
+		private void KyoshinZoomChange_3(object sender, EventArgs e)
 		{
 			MonitorZoom = 3;
 		}
 
-		private void button5_Click(object sender, EventArgs e)
+		private void KyoshinZoomChange_4(object sender, EventArgs e)
 		{
 			MonitorZoom = 4;
 		}
 
-		private void button6_Click(object sender, EventArgs e)
+		private void KyoshinZoomChange_5(object sender, EventArgs e)
 		{
 			MonitorZoom = 5;
 		}
 
 		#endregion
 
-		private void interpolatedPictureBox2_MouseDown(object sender, MouseEventArgs e)
+		private void InterpolatedPictureBox2_MouseDown(object sender, MouseEventArgs e)
 		{
 			var clientpos = ((Point2)e.Location / MonitorZoom).Floor();
 			System.Diagnostics.Debug.WriteLine(clientpos);
@@ -251,7 +251,7 @@ namespace KyoshinShindoPlaceEditor
 			UpdateListValue();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void SaveToPbf(object sender, EventArgs e)
 		{
 			if (MessageBox.Show(Properties.Settings.Default.PbfFilename + "に保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
 				return;
@@ -267,7 +267,7 @@ namespace KyoshinShindoPlaceEditor
 			}
 		}
 
-		private void button10_Click(object sender, EventArgs e)
+		private void SaveToCsv(object sender, EventArgs e)
 		{
 			if (MessageBox.Show(Properties.Settings.Default.CsvFilename + "に保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
 				return;
@@ -284,7 +284,7 @@ namespace KyoshinShindoPlaceEditor
 			}
 		}
 
-		private void button12_Click(object sender, EventArgs e)
+		private void LoadFromPbf(object sender, EventArgs e)
 		{
 			if (!File.Exists(Properties.Settings.Default.PbfFilename))
 			{
@@ -301,7 +301,7 @@ namespace KyoshinShindoPlaceEditor
 			UpdateListValue();
 		}
 
-		private void button13_Click(object sender, EventArgs e)
+		private void LoadFromCsv(object sender, EventArgs e)
 		{
 			if (!File.Exists(Properties.Settings.Default.CsvFilename))
 			{
@@ -351,12 +351,12 @@ namespace KyoshinShindoPlaceEditor
 			MessageBox.Show($"レポート\n成功:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
-		private void button7_Click(object sender, EventArgs e)
+		private void RefleshKyoshinImage(object sender, EventArgs e)
 		{
 			UpdateImage();
 		}
 
-		private void button8_Click(object sender, EventArgs e)
+		private void ImportEqWatchData(object sender, EventArgs e)
 		{
 			if (!File.Exists("Kansokuten.dat"))
 			{
@@ -410,7 +410,7 @@ namespace KyoshinShindoPlaceEditor
 			MessageBox.Show($"レポート\n置き換え:{replaceCount}件\n追加:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
-		private void button11_Click(object sender, EventArgs e)
+		private void ImportNiedData(object sender, EventArgs e)
 		{
 			if (!File.Exists("sitepub_kik_sj.csv"))
 			{
@@ -469,7 +469,7 @@ namespace KyoshinShindoPlaceEditor
 			MessageBox.Show($"レポート\n置き換え:非対応\n追加:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
-		private void checkBox1_CheckedChanged(object sender, EventArgs e)
+		private void BackgroundMapChanged(object sender, EventArgs e)
 		{
 			if (checkBox1.Checked)
 				interpolatedPictureBox3.ImageLocation = "";
@@ -477,7 +477,7 @@ namespace KyoshinShindoPlaceEditor
 				interpolatedPictureBox3.ImageLocation = "base_map_w.gif";
 		}
 
-		private void checkBox2_CheckedChanged(object sender, EventArgs e)
+		private void PointMapChanged(object sender, EventArgs e)
 		{
 			if (checkBox2.Checked)
 				interpolatedPictureBox4.Image = null;
@@ -485,14 +485,14 @@ namespace KyoshinShindoPlaceEditor
 				UpdateListValue();
 		}
 
-		private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+		private void ContextMenuOpening(object sender, CancelEventArgs e)
 		{
 			if (listView1.SelectedItems.Count > 0)
 				return;
 			e.Cancel = true;
 		}
 
-		private void toggleSuspendToolStripMenuItem_Click(object sender, EventArgs e)
+		private void ToggleSuspendToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			var point = _points.FirstOrDefault(p => p.Code == listView1.SelectedItems[0].Text);
 			if (point == null)
@@ -504,7 +504,7 @@ namespace KyoshinShindoPlaceEditor
 			UpdateListValue();
 		}
 
-		private void removePointToolStripMenuItem_Click(object sender, EventArgs e)
+		private void RemovePointToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			var point = _points.FirstOrDefault(p => p.Code == listView1.SelectedItems[0].Text);
 			if (point == null)
@@ -515,7 +515,7 @@ namespace KyoshinShindoPlaceEditor
 			UpdateListValue();
 		}
 
-		private void button9_Click(object sender, EventArgs e)
+		private void ShowMapUsage(object sender, EventArgs e)
 		{
 			MessageBox.Show(@"**操作方法**
 画像更新ボタンを押すと現在の時間の強震モニタの画像に更新されます。
