@@ -387,7 +387,7 @@
 			// PrefColumn
 			// 
 			this.PrefColumn.Text = "大まかな地域";
-			this.PrefColumn.Width = 80;
+			this.PrefColumn.Width = 100;
 			// 
 			// LocationColumn
 			// 
