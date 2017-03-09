@@ -2,7 +2,7 @@
 あまりにもひどいソースコードが氾濫するのを防ぐため、`KyoshinShindoPlaceEditor`に関しては引用などは原則禁止とさせていただきます。
 どうしても使いたい場合があれば連絡していただければ限定的に許可する場合もあります。
 
-`ReadDataExample`については煮るなり焼くなり好きにしてください。(詳しくは下記参照)
+`ReadDataExample`については煮るなり焼くなり好きにしてください。(詳しくはREADME.md参照)
 
 # Protobuf-net
 The core Protocol Buffers technology is provided courtesy of Google.
