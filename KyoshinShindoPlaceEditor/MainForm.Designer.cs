@@ -1,6 +1,6 @@
 ﻿namespace KyoshinShindoPlaceEditor
 {
-	partial class Form1
+	partial class MainForm
 	{
 		/// <summary>
 		/// 必要なデザイナー変数です。
@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.button9 = new System.Windows.Forms.Button();
@@ -50,11 +50,6 @@
 			this.interpolatedPictureBox3 = new KyoshinShindoPlaceEditor.InterpolatedPictureBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.interpolatedPictureBox1 = new KyoshinShindoPlaceEditor.InterpolatedPictureBox();
-			this.button13 = new System.Windows.Forms.Button();
-			this.button12 = new System.Windows.Forms.Button();
-			this.button11 = new System.Windows.Forms.Button();
-			this.button10 = new System.Windows.Forms.Button();
-			this.button8 = new System.Windows.Forms.Button();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.CodeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.TypeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -66,22 +61,21 @@
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toggleSuspendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.removePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.button1 = new System.Windows.Forms.Button();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.importFromEqWatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.importFromNiedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.savePbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.saveCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.loadAsPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.savePbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveAsPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.loadCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -112,14 +106,8 @@
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.menuStrip1);
-			this.splitContainer1.Panel2.Controls.Add(this.button13);
-			this.splitContainer1.Panel2.Controls.Add(this.button12);
-			this.splitContainer1.Panel2.Controls.Add(this.button11);
-			this.splitContainer1.Panel2.Controls.Add(this.button10);
-			this.splitContainer1.Panel2.Controls.Add(this.button8);
 			this.splitContainer1.Panel2.Controls.Add(this.listView1);
-			this.splitContainer1.Panel2.Controls.Add(this.button1);
+			this.splitContainer1.Panel2.Controls.Add(this.menuStrip1);
 			this.splitContainer1.Size = new System.Drawing.Size(1184, 752);
 			this.splitContainer1.SplitterDistance = 466;
 			this.splitContainer1.TabIndex = 2;
@@ -356,63 +344,8 @@
 			this.interpolatedPictureBox1.TabIndex = 0;
 			this.interpolatedPictureBox1.TabStop = false;
 			// 
-			// button13
-			// 
-			this.button13.Location = new System.Drawing.Point(172, 27);
-			this.button13.Name = "button13";
-			this.button13.Size = new System.Drawing.Size(55, 23);
-			this.button13.TabIndex = 9;
-			this.button13.Text = "csv読込";
-			this.button13.UseVisualStyleBackColor = true;
-			this.button13.Click += new System.EventHandler(this.LoadFromCsv);
-			// 
-			// button12
-			// 
-			this.button12.Location = new System.Drawing.Point(57, 27);
-			this.button12.Name = "button12";
-			this.button12.Size = new System.Drawing.Size(55, 23);
-			this.button12.TabIndex = 8;
-			this.button12.Text = "pbf読込";
-			this.button12.UseVisualStyleBackColor = true;
-			this.button12.Click += new System.EventHandler(this.LoadFromPbf);
-			// 
-			// button11
-			// 
-			this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button11.Location = new System.Drawing.Point(459, 27);
-			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(113, 23);
-			this.button11.TabIndex = 7;
-			this.button11.Text = "NIEDからインポート";
-			this.button11.UseVisualStyleBackColor = true;
-			this.button11.Click += new System.EventHandler(this.ImportNiedData);
-			// 
-			// button10
-			// 
-			this.button10.Location = new System.Drawing.Point(118, 27);
-			this.button10.Name = "button10";
-			this.button10.Size = new System.Drawing.Size(55, 23);
-			this.button10.TabIndex = 6;
-			this.button10.Text = "csv保存";
-			this.button10.UseVisualStyleBackColor = true;
-			this.button10.Click += new System.EventHandler(this.SaveToCsv);
-			// 
-			// button8
-			// 
-			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button8.Location = new System.Drawing.Point(578, 27);
-			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(124, 23);
-			this.button8.TabIndex = 5;
-			this.button8.Text = "EqWatchからインポート";
-			this.button8.UseVisualStyleBackColor = true;
-			this.button8.Click += new System.EventHandler(this.ImportEqWatchData);
-			// 
 			// listView1
 			// 
-			this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.CodeColumn,
             this.TypeColumn,
@@ -422,10 +355,11 @@
             this.LocationColumn,
             this.PointColumn});
 			this.listView1.ContextMenuStrip = this.contextMenuStrip1;
-			this.listView1.Location = new System.Drawing.Point(3, 56);
+			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listView1.Location = new System.Drawing.Point(0, 24);
 			this.listView1.MultiSelect = false;
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(708, 693);
+			this.listView1.Size = new System.Drawing.Size(714, 728);
 			this.listView1.TabIndex = 1;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
@@ -488,16 +422,6 @@
 			this.removePointToolStripMenuItem.Text = "強震モニタ上での座標情報を削除(&R)";
 			this.removePointToolStripMenuItem.Click += new System.EventHandler(this.RemovePointToolStripMenuItem_Click);
 			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(3, 27);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(55, 23);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "pbf保存";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.SaveToPbf);
-			// 
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -536,7 +460,7 @@
             this.loadCsvToolStripMenuItem,
             this.loadAsCsvToolStripMenuItem,
             this.saveCsvToolStripMenuItem,
-            this.saveAsToolStripMenuItem,
+            this.saveAsCsvToolStripMenuItem,
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -549,39 +473,17 @@
 			this.loadPbfToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
 			this.loadPbfToolStripMenuItem.Text = "pbfを読み込む";
 			// 
-			// savePbfToolStripMenuItem
-			// 
-			this.savePbfToolStripMenuItem.Name = "savePbfToolStripMenuItem";
-			this.savePbfToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-			this.savePbfToolStripMenuItem.Text = "pbfで保存";
-			// 
-			// loadCsvToolStripMenuItem
-			// 
-			this.loadCsvToolStripMenuItem.Name = "loadCsvToolStripMenuItem";
-			this.loadCsvToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-			this.loadCsvToolStripMenuItem.Text = "CSVを読み込む";
-			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(218, 6);
-			// 
-			// saveCsvToolStripMenuItem
-			// 
-			this.saveCsvToolStripMenuItem.Name = "saveCsvToolStripMenuItem";
-			this.saveCsvToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-			this.saveCsvToolStripMenuItem.Text = "CSVで保存する";
-			// 
-			// toolStripSeparator2
-			// 
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(218, 6);
-			// 
 			// loadAsPbfToolStripMenuItem
 			// 
 			this.loadAsPbfToolStripMenuItem.Name = "loadAsPbfToolStripMenuItem";
 			this.loadAsPbfToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
 			this.loadAsPbfToolStripMenuItem.Text = "場所を指定してpbfを読み込む";
+			// 
+			// savePbfToolStripMenuItem
+			// 
+			this.savePbfToolStripMenuItem.Name = "savePbfToolStripMenuItem";
+			this.savePbfToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.savePbfToolStripMenuItem.Text = "pbfで保存";
 			// 
 			// saveAsPbfToolStripMenuItem
 			// 
@@ -589,11 +491,16 @@
 			this.saveAsPbfToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
 			this.saveAsPbfToolStripMenuItem.Text = "場所を指定してpbfで保存";
 			// 
-			// exitToolStripMenuItem
+			// toolStripSeparator1
 			// 
-			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-			this.exitToolStripMenuItem.Text = "終了(&E)";
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(218, 6);
+			// 
+			// loadCsvToolStripMenuItem
+			// 
+			this.loadCsvToolStripMenuItem.Name = "loadCsvToolStripMenuItem";
+			this.loadCsvToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.loadCsvToolStripMenuItem.Text = "CSVを読み込む";
 			// 
 			// loadAsCsvToolStripMenuItem
 			// 
@@ -601,11 +508,28 @@
 			this.loadAsCsvToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
 			this.loadAsCsvToolStripMenuItem.Text = "場所を指定してCSVを読み込む";
 			// 
-			// saveAsToolStripMenuItem
+			// saveCsvToolStripMenuItem
 			// 
-			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-			this.saveAsToolStripMenuItem.Text = "場所を指定してCSVで保存する";
+			this.saveCsvToolStripMenuItem.Name = "saveCsvToolStripMenuItem";
+			this.saveCsvToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.saveCsvToolStripMenuItem.Text = "CSVで保存する";
+			// 
+			// saveAsCsvToolStripMenuItem
+			// 
+			this.saveAsCsvToolStripMenuItem.Name = "saveAsCsvToolStripMenuItem";
+			this.saveAsCsvToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.saveAsCsvToolStripMenuItem.Text = "場所を指定してCSVで保存する";
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(218, 6);
+			// 
+			// exitToolStripMenuItem
+			// 
+			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.exitToolStripMenuItem.Text = "終了(&E)";
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -621,15 +545,15 @@
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
 			this.aboutToolStripMenuItem.Text = "このアプリケーションについて(&A)";
 			// 
-			// Form1
+			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1184, 752);
 			this.Controls.Add(this.splitContainer1);
-			this.Name = "Form1";
-			this.Text = "強震モニタ震度情報取得座標エディタ";
-			this.Load += new System.EventHandler(this.Form1_Load);
+			this.Name = "MainForm";
+			this.Text = "KyoshinShindoPlaceEditor";
+			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			this.splitContainer1.Panel2.PerformLayout();
@@ -663,7 +587,6 @@
 		private System.Windows.Forms.ColumnHeader PrefColumn;
 		private System.Windows.Forms.ColumnHeader LocationColumn;
 		private System.Windows.Forms.ColumnHeader PointColumn;
-		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button button6;
 		private System.Windows.Forms.Button button5;
@@ -674,7 +597,6 @@
 		private InterpolatedPictureBox interpolatedPictureBox4;
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.ColumnHeader TypeColumn;
 		private System.Windows.Forms.ColumnHeader SuspendColumn;
 		private System.Windows.Forms.CheckBox checkBox1;
@@ -686,10 +608,6 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.CheckBox checkBox2;
 		private System.Windows.Forms.ToolStripMenuItem removePointToolStripMenuItem;
-		private System.Windows.Forms.Button button10;
-		private System.Windows.Forms.Button button11;
-		private System.Windows.Forms.Button button13;
-		private System.Windows.Forms.Button button12;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem importFromEqWatchToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem importFromNiedToolStripMenuItem;
@@ -703,7 +621,7 @@
 		private System.Windows.Forms.ToolStripMenuItem loadAsPbfToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem saveAsPbfToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem loadAsCsvToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveAsCsvToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
