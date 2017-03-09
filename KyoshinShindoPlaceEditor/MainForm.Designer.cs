@@ -78,6 +78,9 @@
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.selectKyoshinSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.surfaceShindoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.boreholeShindoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -428,6 +431,7 @@
             this.importFromEqWatchToolStripMenuItem,
             this.importFromNiedToolStripMenuItem,
             this.fileToolStripMenuItem,
+            this.selectKyoshinSourceToolStripMenuItem,
             this.helpToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
@@ -440,14 +444,14 @@
 			this.importFromEqWatchToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
 			this.importFromEqWatchToolStripMenuItem.Name = "importFromEqWatchToolStripMenuItem";
 			this.importFromEqWatchToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
-			this.importFromEqWatchToolStripMenuItem.Text = "EqWatchからインポート";
+			this.importFromEqWatchToolStripMenuItem.Text = "&EqWatchからインポート";
 			// 
 			// importFromNiedToolStripMenuItem
 			// 
 			this.importFromNiedToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
 			this.importFromNiedToolStripMenuItem.Name = "importFromNiedToolStripMenuItem";
 			this.importFromNiedToolStripMenuItem.Size = new System.Drawing.Size(178, 20);
-			this.importFromNiedToolStripMenuItem.Text = "NIEDの観測点情報からインポート";
+			this.importFromNiedToolStripMenuItem.Text = "&NIEDの観測点情報からインポート";
 			// 
 			// fileToolStripMenuItem
 			// 
@@ -545,6 +549,29 @@
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
 			this.aboutToolStripMenuItem.Text = "このアプリケーションについて(&A)";
 			// 
+			// selectKyoshinSourceToolStripMenuItem
+			// 
+			this.selectKyoshinSourceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.surfaceShindoStripMenuItem,
+            this.boreholeShindoStripMenuItem});
+			this.selectKyoshinSourceToolStripMenuItem.Name = "selectKyoshinSourceToolStripMenuItem";
+			this.selectKyoshinSourceToolStripMenuItem.Size = new System.Drawing.Size(154, 20);
+			this.selectKyoshinSourceToolStripMenuItem.Text = "モニタ画像の取得元選択(&S)";
+			// 
+			// surfaceShindoStripMenuItem
+			// 
+			this.surfaceShindoStripMenuItem.Checked = true;
+			this.surfaceShindoStripMenuItem.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+			this.surfaceShindoStripMenuItem.Name = "surfaceShindoStripMenuItem";
+			this.surfaceShindoStripMenuItem.Size = new System.Drawing.Size(198, 22);
+			this.surfaceShindoStripMenuItem.Text = "リアルタイム震度(地表)(&S)";
+			// 
+			// boreholeShindoStripMenuItem
+			// 
+			this.boreholeShindoStripMenuItem.Name = "boreholeShindoStripMenuItem";
+			this.boreholeShindoStripMenuItem.Size = new System.Drawing.Size(198, 22);
+			this.boreholeShindoStripMenuItem.Text = "リアルタイム震度(地中)(&U)";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -625,6 +652,9 @@
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem selectKyoshinSourceToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem surfaceShindoStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem boreholeShindoStripMenuItem;
 	}
 }
 

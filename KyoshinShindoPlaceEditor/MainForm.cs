@@ -28,6 +28,8 @@ namespace KyoshinShindoPlaceEditor
 
 		private double _monitorZoom = 1;
 
+		private MonitorSourceType _sourceType;
+
 		private double MonitorZoom
 		{
 			get => _monitorZoom;
@@ -46,6 +48,8 @@ namespace KyoshinShindoPlaceEditor
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
+			_sourceType = MonitorSourceType.SurfaceShindo;
+
 			Text += " - " + Assembly.GetExecutingAssembly().GetName().Version;
 
 			importFromNiedToolStripMenuItem.Click += (s2, e2) => ImportNiedData();
@@ -117,6 +121,22 @@ namespace KyoshinShindoPlaceEditor
 
 			aboutToolStripMenuItem.Click += (s2, e2) => new AboutForm().ShowDialog();
 
+			surfaceShindoStripMenuItem.Click += (s2, e2) =>
+			{
+				_sourceType = MonitorSourceType.SurfaceShindo;
+				surfaceShindoStripMenuItem.CheckState = CheckState.Indeterminate;
+				boreholeShindoStripMenuItem.CheckState = CheckState.Unchecked;
+				UpdateImage();
+			};
+			boreholeShindoStripMenuItem.Click += (s2, e2) =>
+			{
+				_sourceType = MonitorSourceType.BoreholeShindo;
+				surfaceShindoStripMenuItem.CheckState = CheckState.Unchecked;
+				boreholeShindoStripMenuItem.CheckState = CheckState.Indeterminate;
+				UpdateImage();
+			};
+
+
 			interpolatedPictureBox3.ImageLocation = "http://www.kmoni.bosai.go.jp/new/data/map_img/CommonImg/base_map_w.gif";
 
 			interpolatedPictureBox4.MouseDown += (s2, e2) =>
@@ -173,7 +193,10 @@ namespace KyoshinShindoPlaceEditor
 		private void UpdateImage()
 		{
 			var startTime = DateTime.Now.AddSeconds(-2);
-			interpolatedPictureBox2.ImageLocation = "http://www.kmoni.bosai.go.jp/new/data/map_img/RealTimeImg/jma_s/" + startTime.ToString("yyyyMMdd") + "/" + startTime.ToString("yyyyMMddHHmmss") + ".jma_s.gif";
+			if (_sourceType == MonitorSourceType.SurfaceShindo)
+				interpolatedPictureBox2.ImageLocation = "http://www.kmoni.bosai.go.jp/new/data/map_img/RealTimeImg/jma_s/" + startTime.ToString("yyyyMMdd") + "/" + startTime.ToString("yyyyMMddHHmmss") + ".jma_s.gif";
+			else if (_sourceType == MonitorSourceType.BoreholeShindo)
+				interpolatedPictureBox2.ImageLocation = "http://www.kmoni.bosai.go.jp/new/data/map_img/RealTimeImg/jma_b/" + startTime.ToString("yyyyMMdd") + "/" + startTime.ToString("yyyyMMddHHmmss") + ".jma_b.gif";
 		}
 
 		private void UpdateListValue()

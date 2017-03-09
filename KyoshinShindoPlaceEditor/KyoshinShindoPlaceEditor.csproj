@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Location.cs" />
     <Compile Include="MercatorProjection.cs" />
+    <Compile Include="MonitorSourceType.cs" />
     <Compile Include="ObservationPointType.cs" />
     <Compile Include="ObservationPoint.cs" />
     <Compile Include="Point2.cs" />
