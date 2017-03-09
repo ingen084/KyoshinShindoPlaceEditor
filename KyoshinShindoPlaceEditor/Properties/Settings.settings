@@ -1,7 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="KyoshinShindoPlaceEditor.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PbfFilename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ShindoObsPoints.pbf</Value>
+    </Setting>
+    <Setting Name="CsvFilename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ShindoObsPoints.csv</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

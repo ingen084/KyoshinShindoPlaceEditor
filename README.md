@@ -60,13 +60,45 @@ csv形式で保存したファイルの出力形式は、
 
 保存したファイルの拡張子を変更して使用してることを気づかせないようなことも可能です。
 
+## 設定
+`KyoshinShindoPlaceEditor.exe.config`を編集します。
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="KyoshinShindoPlaceEditor.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.2" />
+    </startup>
+    <applicationSettings>
+        <KyoshinShindoPlaceEditor.Properties.Settings>
+            <setting name="PbfFilename" serializeAs="String">
+                <value>[読み込むpbfファイルのパス]</value>
+            </setting>
+            <setting name="CsvFilename" serializeAs="String">
+                <value>[読み込むcsvファイルのパス]</value>
+            </setting>
+        </KyoshinShindoPlaceEditor.Properties.Settings>
+    </applicationSettings>
+</configuration>
+```
+ここの`[読み込むpbfファイルのパス]` `[読み込むpbfファイルのパス]`を編集することで、読み込みボタンを押した際に読み込まれるファイルを変更することができます。
+
+絶対・相対パス共に利用できますので、是非活用してください。
+
 ## FAQ
 ### 使い方わかんねぇ
-ガバガバ解説なのでなんでも聞いてください。
+この通りガバガバ解説なのでなんでも聞いてください。
+
 ### 落ちた
 結構エラー処理適当なので
 状況を教えてくれるかデバッグしてくれると助かります。
+
 ### プルリクできないんだけど？
 いつかGitHubに上げる可能性が微レ存なのでそれまではTwitterのDMかなんかでよろしくお願いします。
+
 ### なんやこのクソース アホくさ。辞めたらこの仕事?
 わかる

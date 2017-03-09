@@ -253,11 +253,11 @@ namespace KyoshinShindoPlaceEditor
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			if (MessageBox.Show("保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+			if (MessageBox.Show(Properties.Settings.Default.PbfFilename + "に保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
 				return;
 			try
 			{
-				using (var stream = new FileStream("ShindoObsPoints.pbf", FileMode.Create))
+				using (var stream = new FileStream(Properties.Settings.Default.PbfFilename, FileMode.Create))
 					Serializer.Serialize(stream, _points);
 				UpdateListValue();
 			}
@@ -269,11 +269,11 @@ namespace KyoshinShindoPlaceEditor
 
 		private void button10_Click(object sender, EventArgs e)
 		{
-			if (MessageBox.Show("保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+			if (MessageBox.Show(Properties.Settings.Default.CsvFilename + "に保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
 				return;
 			try
 			{
-				using (var stream = new StreamWriter("ShindoObsPoints.csv"))
+				using (var stream = new StreamWriter(Properties.Settings.Default.CsvFilename))
 					foreach (var point in _points)
 						stream.WriteLine($"{(int)point.Type},{point.Code},{point.IsSuspended},{point.Name},{point.Region},{point.Location.Latitude},{point.Location.Longitude},{point.Point?.X.ToString() ?? ""},{point.Point?.Y.ToString() ?? ""}");
 				UpdateListValue();
@@ -286,16 +286,16 @@ namespace KyoshinShindoPlaceEditor
 
 		private void button12_Click(object sender, EventArgs e)
 		{
-			if (!File.Exists("ShindoObsPoints.pbf"))
+			if (!File.Exists(Properties.Settings.Default.PbfFilename))
 			{
-				MessageBox.Show("ShindoObsPoints.pbfが見つかりません。", null);
+				MessageBox.Show(Properties.Settings.Default.PbfFilename + "が見つかりません。", null);
 				return;
 			}
 
-			if (MessageBox.Show("現状のデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+			if (MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
 				return;
 
-			using (var stream = new FileStream("ShindoObsPoints.pbf", FileMode.Open))
+			using (var stream = new FileStream(Properties.Settings.Default.PbfFilename, FileMode.Open))
 				_points = Serializer.Deserialize<List<ObservationPoint>>(stream);
 
 			UpdateListValue();
@@ -303,13 +303,13 @@ namespace KyoshinShindoPlaceEditor
 
 		private void button13_Click(object sender, EventArgs e)
 		{
-			if (!File.Exists("ShindoObsPoints.csv"))
+			if (!File.Exists(Properties.Settings.Default.CsvFilename))
 			{
-				MessageBox.Show("ShindoObsPoints.csvが見つかりません。", null);
+				MessageBox.Show(Properties.Settings.Default.CsvFilename + "が見つかりません。", null);
 				return;
 			}
 
-			if (MessageBox.Show("現状のデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+			if (MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
 				return;
 
 			var addedCount = 0;
@@ -317,7 +317,7 @@ namespace KyoshinShindoPlaceEditor
 
 			_points = new List<ObservationPoint>();
 
-			using (var reader = new StreamReader("ShindoObsPoints.csv"))
+			using (var reader = new StreamReader(Properties.Settings.Default.CsvFilename))
 			{
 				while (reader.Peek() >= 0)
 				{
