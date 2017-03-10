@@ -136,7 +136,6 @@ namespace KyoshinShindoPlaceEditor
 				UpdateImage();
 			};
 
-
 			interpolatedPictureBox3.ImageLocation = "http://www.kmoni.bosai.go.jp/new/data/map_img/CommonImg/base_map_w.gif";
 
 			interpolatedPictureBox4.MouseDown += (s2, e2) =>
@@ -286,12 +285,16 @@ namespace KyoshinShindoPlaceEditor
 		#region ZoomChange
 
 		private void KyoshinZoomChange_1(object sender, EventArgs e) => MonitorZoom = 1;
+
 		private void KyoshinZoomChange_2(object sender, EventArgs e) => MonitorZoom = 2;
+
 		private void KyoshinZoomChange_3(object sender, EventArgs e) => MonitorZoom = 3;
+
 		private void KyoshinZoomChange_4(object sender, EventArgs e) => MonitorZoom = 4;
+
 		private void KyoshinZoomChange_5(object sender, EventArgs e) => MonitorZoom = 5;
 
-		#endregion
+		#endregion ZoomChange
 
 		private void InterpolatedPictureBox2_MouseDown(object sender, MouseEventArgs e)
 		{
@@ -326,6 +329,7 @@ namespace KyoshinShindoPlaceEditor
 		}
 
 		#region Save
+
 		private void SaveToPbf(string path, bool checkDialog = true)
 		{
 			if (checkDialog && MessageBox.Show(path + "に保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
@@ -358,9 +362,11 @@ namespace KyoshinShindoPlaceEditor
 				MessageBox.Show("csv保存に失敗しました。\n" + ex, null);
 			}
 		}
-		#endregion
+
+		#endregion Save
 
 		#region Load
+
 		private void LoadFromPbf(string path)
 		{
 			if (!File.Exists(path))
@@ -437,9 +443,11 @@ namespace KyoshinShindoPlaceEditor
 				UpdateListValue();
 			}
 		}
-		#endregion
+
+		#endregion Load
 
 		#region Import
+
 		private void ImportEqWatchData()
 		{
 			if (!File.Exists("Kansokuten.dat"))
@@ -575,7 +583,8 @@ namespace KyoshinShindoPlaceEditor
 				UpdateListValue();
 			}
 		}
-		#endregion
+
+		#endregion Import
 
 		private void RefleshKyoshinImage(object sender, EventArgs e)
 		{

@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KyoshinShindoPlaceEditor
 {
 	public static class MercatorProjection
 	{
 		public const int TileSize = 256;
-		static double _pixelsPerLonDegree = TileSize / (double)360;
-		static double _pixelsPerLonRadian = TileSize / (2 * Math.PI);
-		static Point2 _origin = new Point2(128, 128);
+		private static double _pixelsPerLonDegree = TileSize / (double)360;
+		private static double _pixelsPerLonRadian = TileSize / (2 * Math.PI);
+		private static Point2 _origin = new Point2(128, 128);
 
 		public static Point2 LatLngToPoint(Location location)
 		{
@@ -57,6 +53,7 @@ namespace KyoshinShindoPlaceEditor
 
 		public static Point2 LatLngToPixel(Location loc, double zoom)
 			=> PointToPixel(LatLngToPoint(loc), zoom);
+
 		public static Location PixelToLatLng(Point2 pixel, double zoom)
 			=> PointToLatLng(PixelToPoint(pixel, zoom));
 

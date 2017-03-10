@@ -1,17 +1,15 @@
 ﻿using ProtoBuf;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KyoshinShindoPlaceEditor
 {
 	[ProtoContract]
 	public class ObservationPoint : IComparable
 	{
-		public ObservationPoint() { }
+		public ObservationPoint()
+		{
+		}
+
 		public ObservationPoint(ObservationPointType type, string code, bool isSuspended, string name, string pref, Location location, Point2? point = null)
 		{
 			Type = type;

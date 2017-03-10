@@ -1,16 +1,10 @@
 ﻿using ProtoBuf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReadDataExample.PbfClass
 {
 	[ProtoContract]
 	public class Location
 	{
-
 		public Location()
 		{
 		}
@@ -30,5 +24,4 @@ namespace ReadDataExample.PbfClass
 		public override string ToString()
 			=> $"緯度:{Latitude} 経度:{Longitude}";
 	}
-
 }

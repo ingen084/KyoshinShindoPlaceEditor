@@ -1,9 +1,4 @@
 ﻿using ProtoBuf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KyoshinShindoPlaceEditor
 {
@@ -23,8 +18,10 @@ namespace KyoshinShindoPlaceEditor
 			{
 				case ObservationPointType.Unknown:
 					return "不明";
+
 				case ObservationPointType.KiK_net:
 					return "KiK-net";
+
 				case ObservationPointType.K_NET:
 					return "K-NET";
 			}
