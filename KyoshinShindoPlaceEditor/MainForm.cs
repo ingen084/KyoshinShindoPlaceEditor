@@ -354,7 +354,7 @@ namespace KyoshinShindoPlaceEditor
 			{
 				using (var stream = new StreamWriter(path))
 					foreach (var point in _points)
-						stream.WriteLine($"{(int)point.Type},{point.Code},{point.IsSuspended},{point.Name},{point.Region},{point.Location.Latitude},{point.Location.Longitude},{point.Point?.X.ToString() ?? ""},{point.Point?.Y.ToString() ?? ""}");
+						stream.WriteLine($"{(int)point.Type},{point.Code},{point.IsSuspended},{point.Name},{point.Region},{point.Location.Latitude},{point.Location.Longitude},{point.Point?.X.ToString() ?? ""},{point.Point?.Y.ToString() ?? ""},{point.ClassificationId?.ToString() ?? ""},{point.PrefectureClassificationId?.ToString() ?? ""}");
 				UpdateListValue();
 			}
 			catch (Exception ex)
@@ -426,6 +426,11 @@ namespace KyoshinShindoPlaceEditor
 							};
 							if (!string.IsNullOrWhiteSpace(strings[7]) && !string.IsNullOrWhiteSpace(strings[8]))
 								point.Point = new Point2(int.Parse(strings[7]), int.Parse(strings[8]));
+							if (strings.Length >= 10)
+							{
+								point.ClassificationId = int.Parse(strings[9]);
+								point.PrefectureClassificationId = int.Parse(strings[10]);
+							}
 							_points.Add(point);
 							addedCount++;
 						}
@@ -456,13 +461,17 @@ namespace KyoshinShindoPlaceEditor
 				return;
 			}
 
-			if (_points.Any() && MessageBox.Show("インポート元に含まれているデータがすべて上書きされます。インポートしてもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
-				return;
-
 			var addedCount = 0;
 			var addId = 0;
 			var replaceCount = 0;
 			var errorCount = 0;
+			var completionMode = false;
+
+			if (_points.Any() && MessageBox.Show("インポートすると現在読み込まれているデータに上書きされます。インポートしてもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+				return;
+
+			if (_points.Any(p => p.Point != null) && MessageBox.Show("ピクセル座標が登録されていない地点のみインポートし、それ以外はその他の情報を補完するモードにしますか？", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				completionMode = true;
 
 			try
 			{
@@ -484,7 +493,8 @@ namespace KyoshinShindoPlaceEditor
 							if (point != null)
 							{
 								point.IsSuspended = strings[0] == "0";
-								point.Point = new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12]));
+								if (!completionMode || point.Point == null)
+									point.Point = new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12]));
 								replaceCount++;
 							}
 							//ないとき…
@@ -493,10 +503,13 @@ namespace KyoshinShindoPlaceEditor
 								while (_points.Any(p => p.Code == $"_EQW{addId}"))
 									addId++;
 
-								_points.Add(new ObservationPoint(strings[2].ToObservationPointType(), $"_EQW{addId}", strings[0] == "0", strings[3], strings[4], new Location(float.Parse(strings[8]), float.Parse(strings[7])), new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12]))));
+								point = new ObservationPoint(strings[2].ToObservationPointType(), $"_EQW{addId}", strings[0] == "0", strings[3], strings[4], new Location(float.Parse(strings[8]), float.Parse(strings[7])), new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12])));
+								_points.Add(point);
 								addedCount++;
 								addId++;
 							}
+							point.ClassificationId = point.ClassificationId ?? int.Parse(strings[5]);
+							point.PrefectureClassificationId = point.PrefectureClassificationId ?? int.Parse(strings[6]);
 						}
 						catch
 						{
