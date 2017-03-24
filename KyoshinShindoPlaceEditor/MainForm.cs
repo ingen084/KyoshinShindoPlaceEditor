@@ -191,7 +191,7 @@ namespace KyoshinShindoPlaceEditor
 
 		private void UpdateImage()
 		{
-			var startTime = DateTime.Now.AddSeconds(-2);
+			var startTime = DateTime.Now.AddSeconds(-10);
 			if (_sourceType == MonitorSourceType.SurfaceShindo)
 				interpolatedPictureBox2.ImageLocation = "http://www.kmoni.bosai.go.jp/new/data/map_img/RealTimeImg/jma_s/" + startTime.ToString("yyyyMMdd") + "/" + startTime.ToString("yyyyMMddHHmmss") + ".jma_s.gif";
 			else if (_sourceType == MonitorSourceType.BoreholeShindo)

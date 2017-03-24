@@ -38,6 +38,8 @@ namespace ReadDataExample
 			Console.WriteLine($"Region: {points[0].Region}");                       //観測地点が属する大まかな地名の名称 (都道府県だけ取得したい場合は『 』(半角スペース)で区切った１つ目の要素を取得すればできる。ただし例外もあるので各都道府県はきちんと名前で用意して比較するべき？)
 			Console.WriteLine($"Location: {points[0].Location}");                   //地理座標 震度マップを他の場所に移す場合などに有効。
 			Console.WriteLine($"Point: {points[0].Point?.ToString() ?? "なし"}"); //強震モニタ上でのピクセル座標 nullの場合は未設定。
+			Console.WriteLine($"ClassificationId: {points[0].ClassificationId}");
+			Console.WriteLine($"PrefectureClassificationId: {points[0].PrefectureClassificationId}");
 
 			Console.WriteLine("Enterキーで終了...");
 			Console.ReadLine();
