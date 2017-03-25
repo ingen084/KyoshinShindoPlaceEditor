@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KyoshinMonitorLib;
+using System;
 
 namespace KyoshinShindoPlaceEditor
 {
@@ -13,10 +14,10 @@ namespace KyoshinShindoPlaceEditor
 		{
 			var point = new Point2()
 			{
-				X = _origin.X + location.Longitude * _pixelsPerLonDegree
+				X = (int)(_origin.X + location.Longitude * _pixelsPerLonDegree)
 			};
 			var siny = Bound(Math.Sin(DegreesToRadians(location.Latitude)), -0.9999, 0.9999);
-			point.Y = _origin.Y + 0.5 * Math.Log((1 + siny) / (1 - siny)) * -_pixelsPerLonRadian;
+			point.Y = (int)(_origin.Y + 0.5 * Math.Log((1 + siny) / (1 - siny)) * -_pixelsPerLonRadian);
 
 			return point;
 		}
@@ -35,8 +36,8 @@ namespace KyoshinShindoPlaceEditor
 		{
 			var pixel = new Point2()
 			{
-				X = point.X * Math.Pow(2, zoom),
-				Y = point.Y * Math.Pow(2, zoom)
+				X = (int)(point.X * Math.Pow(2, zoom)),
+				Y = (int)(point.Y * Math.Pow(2, zoom))
 			};
 			return pixel;
 		}
@@ -45,8 +46,8 @@ namespace KyoshinShindoPlaceEditor
 		{
 			var pixel = new Point2()
 			{
-				X = point.X / Math.Pow(2, zoom),
-				Y = point.Y / Math.Pow(2, zoom)
+				X = (int)(point.X / Math.Pow(2, zoom)),
+				Y = (int)(point.Y / Math.Pow(2, zoom))
 			};
 			return pixel;
 		}

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KyoshinShindoPlaceEditor", "KyoshinShindoPlaceEditor\KyoshinShindoPlaceEditor.csproj", "{129D9EB5-7ECE-4A3F-A032-0E23444C0644}"
 EndProject
@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KyoshinMonitorLib", "KyoshinMonitorLib\KyoshinMonitorLib\KyoshinMonitorLib.csproj", "{CC14F41E-11A6-43D3-9A68-31F784E3C252}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{9BF3FC29-1FDA-4A3C-85E9-02D0F6197305}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BF3FC29-1FDA-4A3C-85E9-02D0F6197305}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BF3FC29-1FDA-4A3C-85E9-02D0F6197305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC14F41E-11A6-43D3-9A68-31F784E3C252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC14F41E-11A6-43D3-9A68-31F784E3C252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC14F41E-11A6-43D3-9A68-31F784E3C252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC14F41E-11A6-43D3-9A68-31F784E3C252}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

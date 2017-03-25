@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿using KyoshinMonitorLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -241,7 +241,7 @@ namespace KyoshinShindoPlaceEditor
 					if (point.IsSuspended)
 						color = Color.Gray;
 
-					canvas.SetPixel((int)((Point2)point.Point).X, (int)((Point2)point.Point).Y, color);
+					canvas.SetPixel(((Point2)point.Point).X, ((Point2)point.Point).Y, color);
 				}
 				interpolatedPictureBox4.Image = canvas;
 			}
@@ -298,7 +298,7 @@ namespace KyoshinShindoPlaceEditor
 
 		private void InterpolatedPictureBox2_MouseDown(object sender, MouseEventArgs e)
 		{
-			var clientpos = ((Point2)e.Location / MonitorZoom).Floor();
+			var clientpos = ((Point2)e.Location / (int)Math.Floor(MonitorZoom));
 			System.Diagnostics.Debug.WriteLine(clientpos);
 
 			if (e.Button == MouseButtons.Middle && _points.Any(p => p.Point == clientpos))
@@ -336,8 +336,7 @@ namespace KyoshinShindoPlaceEditor
 				return;
 			try
 			{
-				using (var stream = new FileStream(path, FileMode.Create))
-					Serializer.Serialize(stream, _points);
+				_points.SaveToPbf(path);
 				UpdateListValue();
 			}
 			catch (Exception ex)
@@ -352,9 +351,7 @@ namespace KyoshinShindoPlaceEditor
 				return;
 			try
 			{
-				using (var stream = new StreamWriter(path))
-					foreach (var point in _points)
-						stream.WriteLine($"{(int)point.Type},{point.Code},{point.IsSuspended},{point.Name},{point.Region},{point.Location.Latitude},{point.Location.Longitude},{point.Point?.X.ToString() ?? ""},{point.Point?.Y.ToString() ?? ""},{point.ClassificationId?.ToString() ?? ""},{point.PrefectureClassificationId?.ToString() ?? ""}");
+				_points.SaveToCsv(path);
 				UpdateListValue();
 			}
 			catch (Exception ex)
@@ -379,8 +376,7 @@ namespace KyoshinShindoPlaceEditor
 				return;
 			try
 			{
-				using (var stream = new FileStream(path, FileMode.Open))
-					_points = Serializer.Deserialize<List<ObservationPoint>>(stream) ?? new List<ObservationPoint>();
+				_points = ObservationPoint.LoadFromPbf(path).ToList();
 			}
 			catch (Exception ex)
 			{
@@ -401,43 +397,10 @@ namespace KyoshinShindoPlaceEditor
 			if (_points.Any() && MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
 				return;
 
-			var addedCount = 0;
-			var errorCount = 0;
-
-			_points = new List<ObservationPoint>();
-
 			try
 			{
-				using (var reader = new StreamReader(path))
-					while (reader.Peek() >= 0)
-						try
-						{
-							var strings = reader.ReadLine().Split(',');
-
-							var point = new ObservationPoint()
-							{
-								Type = (ObservationPointType)int.Parse(strings[0]),
-								Code = strings[1],
-								IsSuspended = bool.Parse(strings[2]),
-								Name = strings[3],
-								Region = strings[4],
-								Location = new Location(float.Parse(strings[5]), float.Parse(strings[6])),
-								Point = null
-							};
-							if (!string.IsNullOrWhiteSpace(strings[7]) && !string.IsNullOrWhiteSpace(strings[8]))
-								point.Point = new Point2(int.Parse(strings[7]), int.Parse(strings[8]));
-							if (strings.Length >= 11)
-							{
-								point.ClassificationId = int.Parse(strings[9]);
-								point.PrefectureClassificationId = int.Parse(strings[10]);
-							}
-							_points.Add(point);
-							addedCount++;
-						}
-						catch
-						{
-							errorCount++;
-						}
+				(ObservationPoint[] points, uint addedCount, uint errorCount) = ObservationPoint.LoadFromCsv(path);
+				_points = points.ToList();
 
 				UpdateListValue();
 				MessageBox.Show($"レポート\n成功:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
