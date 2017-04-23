@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KyoshinShindoPlaceEditor", "KyoshinShindoPlaceEditor\KyoshinShindoPlaceEditor.csproj", "{129D9EB5-7ECE-4A3F-A032-0E23444C0644}"
 EndProject
@@ -15,7 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KyoshinMonitorLib", "KyoshinMonitorLib\KyoshinMonitorLib\KyoshinMonitorLib.csproj", "{CC14F41E-11A6-43D3-9A68-31F784E3C252}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "KyoshinMonitorLib.Shared", "KyoshinMonitorLib\KyoshinMonitorLib.Shared\KyoshinMonitorLib.Shared.shproj", "{C69ECFB7-EBBA-4408-8E9D-0275CE64799D}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		KyoshinMonitorLib\KyoshinMonitorLib.Shared\KyoshinMonitorLib.Shared.projitems*{c69ecfb7-ebba-4408-8e9d-0275ce64799d}*SharedItemsImports = 13
+		KyoshinMonitorLib\KyoshinMonitorLib.Shared\KyoshinMonitorLib.Shared.projitems*{cc14f41e-11a6-43d3-9a68-31f784e3c252}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
