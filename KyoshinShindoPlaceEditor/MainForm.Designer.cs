@@ -63,30 +63,30 @@
 			this.removePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadMpkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadMpkLz4ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadAsPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.savePbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveAsPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importFromNiedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importFromEqWatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.selectKyoshinSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.surfaceShindoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.boreholeShindoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.importFromNiedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.importFromEqWatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadMpkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadMpkLz4ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadAsPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.savePbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveAsPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -179,7 +179,7 @@
 			// button7
 			// 
 			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button7.Location = new System.Drawing.Point(373, 3);
+			this.button7.Location = new System.Drawing.Point(282, 3);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(75, 23);
 			this.button7.TabIndex = 4;
@@ -336,7 +336,7 @@
 			// 
 			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(320, 249);
+			this.label2.Location = new System.Drawing.Point(200, 249);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(160, 12);
 			this.label2.TabIndex = 1;
@@ -457,16 +457,135 @@
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
 			this.fileToolStripMenuItem.Text = "ファイル(&F)";
 			// 
+			// loadToolStripMenuItem
+			// 
+			this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadPbfToolStripMenuItem,
+            this.loadCsvToolStripMenuItem,
+            this.loadMpkToolStripMenuItem,
+            this.loadMpkLz4ToolStripMenuItem1});
+			this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+			this.loadToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.loadToolStripMenuItem.Text = "読み込む(&L)";
+			// 
+			// loadPbfToolStripMenuItem
+			// 
+			this.loadPbfToolStripMenuItem.Name = "loadPbfToolStripMenuItem";
+			this.loadPbfToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
+			this.loadPbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
+			// 
+			// loadCsvToolStripMenuItem
+			// 
+			this.loadCsvToolStripMenuItem.Name = "loadCsvToolStripMenuItem";
+			this.loadCsvToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
+			this.loadCsvToolStripMenuItem.Text = "&CSV (.csv)";
+			// 
+			// loadMpkToolStripMenuItem
+			// 
+			this.loadMpkToolStripMenuItem.Name = "loadMpkToolStripMenuItem";
+			this.loadMpkToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
+			this.loadMpkToolStripMenuItem.Text = "&MessagePack (.mpk)";
+			// 
+			// loadMpkLz4ToolStripMenuItem1
+			// 
+			this.loadMpkLz4ToolStripMenuItem1.Name = "loadMpkLz4ToolStripMenuItem1";
+			this.loadMpkLz4ToolStripMenuItem1.Size = new System.Drawing.Size(269, 22);
+			this.loadMpkLz4ToolStripMenuItem1.Text = "&MessagePack+LZ4 (.mpk.lz4) おすすめ";
+			// 
+			// loadAsToolStripMenuItem
+			// 
+			this.loadAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadAsPbfToolStripMenuItem,
+            this.loadAsCsvToolStripMenuItem});
+			this.loadAsToolStripMenuItem.Name = "loadAsToolStripMenuItem";
+			this.loadAsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.loadAsToolStripMenuItem.Text = "場所を指定して読み込む";
+			// 
+			// loadAsPbfToolStripMenuItem
+			// 
+			this.loadAsPbfToolStripMenuItem.Name = "loadAsPbfToolStripMenuItem";
+			this.loadAsPbfToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+			this.loadAsPbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
+			// 
+			// loadAsCsvToolStripMenuItem
+			// 
+			this.loadAsCsvToolStripMenuItem.Name = "loadAsCsvToolStripMenuItem";
+			this.loadAsCsvToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+			this.loadAsCsvToolStripMenuItem.Text = "&CSV (.csv)";
+			// 
+			// saveToolStripMenuItem
+			// 
+			this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.savePbfToolStripMenuItem,
+            this.saveCsvToolStripMenuItem});
+			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.saveToolStripMenuItem.Text = "保存(&S)";
+			// 
+			// savePbfToolStripMenuItem
+			// 
+			this.savePbfToolStripMenuItem.Name = "savePbfToolStripMenuItem";
+			this.savePbfToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+			this.savePbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
+			// 
+			// saveCsvToolStripMenuItem
+			// 
+			this.saveCsvToolStripMenuItem.Name = "saveCsvToolStripMenuItem";
+			this.saveCsvToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+			this.saveCsvToolStripMenuItem.Text = "&CSV (.csv)";
+			// 
+			// saveAsToolStripMenuItem
+			// 
+			this.saveAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveAsPbfToolStripMenuItem,
+            this.saveAsCsvToolStripMenuItem});
+			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.saveAsToolStripMenuItem.Text = "場所を指定して保存(&A)";
+			// 
+			// saveAsPbfToolStripMenuItem
+			// 
+			this.saveAsPbfToolStripMenuItem.Name = "saveAsPbfToolStripMenuItem";
+			this.saveAsPbfToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+			this.saveAsPbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
+			// 
+			// saveAsCsvToolStripMenuItem
+			// 
+			this.saveAsCsvToolStripMenuItem.Name = "saveAsCsvToolStripMenuItem";
+			this.saveAsCsvToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+			this.saveAsCsvToolStripMenuItem.Text = "&CSV (.csv)";
+			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(219, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(190, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
 			this.exitToolStripMenuItem.Text = "終了(&E)";
+			// 
+			// importToolStripMenuItem
+			// 
+			this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importFromNiedToolStripMenuItem,
+            this.importFromEqWatchToolStripMenuItem});
+			this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+			this.importToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+			this.importToolStripMenuItem.Text = "インポート(&I)";
+			// 
+			// importFromNiedToolStripMenuItem
+			// 
+			this.importFromNiedToolStripMenuItem.Name = "importFromNiedToolStripMenuItem";
+			this.importFromNiedToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+			this.importFromNiedToolStripMenuItem.Text = "&NIEDの観測点情報";
+			// 
+			// importFromEqWatchToolStripMenuItem
+			// 
+			this.importFromEqWatchToolStripMenuItem.Name = "importFromEqWatchToolStripMenuItem";
+			this.importFromEqWatchToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+			this.importFromEqWatchToolStripMenuItem.Text = "&EqWatchのKansokuten.dat";
 			// 
 			// selectKyoshinSourceToolStripMenuItem
 			// 
@@ -504,125 +623,6 @@
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
 			this.aboutToolStripMenuItem.Text = "このアプリケーションについて(&A)";
-			// 
-			// loadToolStripMenuItem
-			// 
-			this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadPbfToolStripMenuItem,
-            this.loadCsvToolStripMenuItem,
-            this.loadMpkToolStripMenuItem,
-            this.loadMpkLz4ToolStripMenuItem1});
-			this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-			this.loadToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-			this.loadToolStripMenuItem.Text = "読み込む(&L)";
-			// 
-			// saveToolStripMenuItem
-			// 
-			this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.savePbfToolStripMenuItem,
-            this.saveCsvToolStripMenuItem});
-			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-			this.saveToolStripMenuItem.Text = "保存(&S)";
-			// 
-			// saveAsToolStripMenuItem
-			// 
-			this.saveAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveAsPbfToolStripMenuItem,
-            this.saveAsCsvToolStripMenuItem});
-			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-			this.saveAsToolStripMenuItem.Text = "場所を指定して保存(&A)";
-			// 
-			// loadAsToolStripMenuItem
-			// 
-			this.loadAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadAsPbfToolStripMenuItem,
-            this.loadAsCsvToolStripMenuItem});
-			this.loadAsToolStripMenuItem.Name = "loadAsToolStripMenuItem";
-			this.loadAsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-			this.loadAsToolStripMenuItem.Text = "場所を指定して読み込む";
-			// 
-			// importToolStripMenuItem
-			// 
-			this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importFromNiedToolStripMenuItem,
-            this.importFromEqWatchToolStripMenuItem});
-			this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-			this.importToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-			this.importToolStripMenuItem.Text = "インポート(&I)";
-			// 
-			// importFromNiedToolStripMenuItem
-			// 
-			this.importFromNiedToolStripMenuItem.Name = "importFromNiedToolStripMenuItem";
-			this.importFromNiedToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-			this.importFromNiedToolStripMenuItem.Text = "&NIEDの観測点情報";
-			// 
-			// importFromEqWatchToolStripMenuItem
-			// 
-			this.importFromEqWatchToolStripMenuItem.Name = "importFromEqWatchToolStripMenuItem";
-			this.importFromEqWatchToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-			this.importFromEqWatchToolStripMenuItem.Text = "&EqWatchのKansokuten.dat";
-			// 
-			// loadPbfToolStripMenuItem
-			// 
-			this.loadPbfToolStripMenuItem.Name = "loadPbfToolStripMenuItem";
-			this.loadPbfToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
-			this.loadPbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
-			// 
-			// loadCsvToolStripMenuItem
-			// 
-			this.loadCsvToolStripMenuItem.Name = "loadCsvToolStripMenuItem";
-			this.loadCsvToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
-			this.loadCsvToolStripMenuItem.Text = "&CSV (.csv)";
-			// 
-			// loadMpkToolStripMenuItem
-			// 
-			this.loadMpkToolStripMenuItem.Name = "loadMpkToolStripMenuItem";
-			this.loadMpkToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
-			this.loadMpkToolStripMenuItem.Text = "&MessagePack (.mpk)";
-			// 
-			// loadMpkLz4ToolStripMenuItem1
-			// 
-			this.loadMpkLz4ToolStripMenuItem1.Name = "loadMpkLz4ToolStripMenuItem1";
-			this.loadMpkLz4ToolStripMenuItem1.Size = new System.Drawing.Size(269, 22);
-			this.loadMpkLz4ToolStripMenuItem1.Text = "&MessagePack+LZ4 (.mpk.lz4) おすすめ";
-			// 
-			// loadAsPbfToolStripMenuItem
-			// 
-			this.loadAsPbfToolStripMenuItem.Name = "loadAsPbfToolStripMenuItem";
-			this.loadAsPbfToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.loadAsPbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
-			// 
-			// loadAsCsvToolStripMenuItem
-			// 
-			this.loadAsCsvToolStripMenuItem.Name = "loadAsCsvToolStripMenuItem";
-			this.loadAsCsvToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.loadAsCsvToolStripMenuItem.Text = "&CSV (.csv)";
-			// 
-			// savePbfToolStripMenuItem
-			// 
-			this.savePbfToolStripMenuItem.Name = "savePbfToolStripMenuItem";
-			this.savePbfToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.savePbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
-			// 
-			// saveCsvToolStripMenuItem
-			// 
-			this.saveCsvToolStripMenuItem.Name = "saveCsvToolStripMenuItem";
-			this.saveCsvToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.saveCsvToolStripMenuItem.Text = "&CSV (.csv)";
-			// 
-			// saveAsPbfToolStripMenuItem
-			// 
-			this.saveAsPbfToolStripMenuItem.Name = "saveAsPbfToolStripMenuItem";
-			this.saveAsPbfToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.saveAsPbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
-			// 
-			// saveAsCsvToolStripMenuItem
-			// 
-			this.saveAsCsvToolStripMenuItem.Name = "saveAsCsvToolStripMenuItem";
-			this.saveAsCsvToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.saveAsCsvToolStripMenuItem.Text = "&CSV (.csv)";
 			// 
 			// MainForm
 			// 
