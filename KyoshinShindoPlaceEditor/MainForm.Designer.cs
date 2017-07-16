@@ -64,19 +64,8 @@
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadMpkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadMpkLz4ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadAsPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.loadAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.savePbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveAsPbfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveAsCsvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,6 +76,7 @@
 			this.boreholeShindoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.sortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -435,6 +425,7 @@
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.sortToolStripMenuItem,
             this.importToolStripMenuItem,
             this.selectKyoshinSourceToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -448,7 +439,6 @@
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem,
-            this.loadAsToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
             this.toolStripSeparator1,
@@ -459,111 +449,32 @@
 			// 
 			// loadToolStripMenuItem
 			// 
-			this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadPbfToolStripMenuItem,
-            this.loadCsvToolStripMenuItem,
-            this.loadMpkToolStripMenuItem,
-            this.loadMpkLz4ToolStripMenuItem1});
 			this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-			this.loadToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.loadToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
 			this.loadToolStripMenuItem.Text = "読み込む(&L)";
-			// 
-			// loadPbfToolStripMenuItem
-			// 
-			this.loadPbfToolStripMenuItem.Name = "loadPbfToolStripMenuItem";
-			this.loadPbfToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
-			this.loadPbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
-			// 
-			// loadCsvToolStripMenuItem
-			// 
-			this.loadCsvToolStripMenuItem.Name = "loadCsvToolStripMenuItem";
-			this.loadCsvToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
-			this.loadCsvToolStripMenuItem.Text = "&CSV (.csv)";
-			// 
-			// loadMpkToolStripMenuItem
-			// 
-			this.loadMpkToolStripMenuItem.Name = "loadMpkToolStripMenuItem";
-			this.loadMpkToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
-			this.loadMpkToolStripMenuItem.Text = "&MessagePack (.mpk)";
-			// 
-			// loadMpkLz4ToolStripMenuItem1
-			// 
-			this.loadMpkLz4ToolStripMenuItem1.Name = "loadMpkLz4ToolStripMenuItem1";
-			this.loadMpkLz4ToolStripMenuItem1.Size = new System.Drawing.Size(269, 22);
-			this.loadMpkLz4ToolStripMenuItem1.Text = "&MessagePack+LZ4 (.mpk.lz4) おすすめ";
-			// 
-			// loadAsToolStripMenuItem
-			// 
-			this.loadAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadAsPbfToolStripMenuItem,
-            this.loadAsCsvToolStripMenuItem});
-			this.loadAsToolStripMenuItem.Name = "loadAsToolStripMenuItem";
-			this.loadAsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-			this.loadAsToolStripMenuItem.Text = "場所を指定して読み込む";
-			// 
-			// loadAsPbfToolStripMenuItem
-			// 
-			this.loadAsPbfToolStripMenuItem.Name = "loadAsPbfToolStripMenuItem";
-			this.loadAsPbfToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.loadAsPbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
-			// 
-			// loadAsCsvToolStripMenuItem
-			// 
-			this.loadAsCsvToolStripMenuItem.Name = "loadAsCsvToolStripMenuItem";
-			this.loadAsCsvToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.loadAsCsvToolStripMenuItem.Text = "&CSV (.csv)";
 			// 
 			// saveToolStripMenuItem
 			// 
-			this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.savePbfToolStripMenuItem,
-            this.saveCsvToolStripMenuItem});
+			this.saveToolStripMenuItem.Enabled = false;
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
 			this.saveToolStripMenuItem.Text = "保存(&S)";
-			// 
-			// savePbfToolStripMenuItem
-			// 
-			this.savePbfToolStripMenuItem.Name = "savePbfToolStripMenuItem";
-			this.savePbfToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.savePbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
-			// 
-			// saveCsvToolStripMenuItem
-			// 
-			this.saveCsvToolStripMenuItem.Name = "saveCsvToolStripMenuItem";
-			this.saveCsvToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.saveCsvToolStripMenuItem.Text = "&CSV (.csv)";
 			// 
 			// saveAsToolStripMenuItem
 			// 
-			this.saveAsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveAsPbfToolStripMenuItem,
-            this.saveAsCsvToolStripMenuItem});
 			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
 			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
 			this.saveAsToolStripMenuItem.Text = "場所を指定して保存(&A)";
 			// 
-			// saveAsPbfToolStripMenuItem
-			// 
-			this.saveAsPbfToolStripMenuItem.Name = "saveAsPbfToolStripMenuItem";
-			this.saveAsPbfToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.saveAsPbfToolStripMenuItem.Text = "&Protocol Buffers (.pbf)";
-			// 
-			// saveAsCsvToolStripMenuItem
-			// 
-			this.saveAsCsvToolStripMenuItem.Name = "saveAsCsvToolStripMenuItem";
-			this.saveAsCsvToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.saveAsCsvToolStripMenuItem.Text = "&CSV (.csv)";
-			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(190, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(130, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
 			this.exitToolStripMenuItem.Text = "終了(&E)";
 			// 
 			// importToolStripMenuItem
@@ -593,8 +504,8 @@
             this.surfaceShindoStripMenuItem,
             this.boreholeShindoStripMenuItem});
 			this.selectKyoshinSourceToolStripMenuItem.Name = "selectKyoshinSourceToolStripMenuItem";
-			this.selectKyoshinSourceToolStripMenuItem.Size = new System.Drawing.Size(154, 20);
-			this.selectKyoshinSourceToolStripMenuItem.Text = "モニタ画像の取得元選択(&S)";
+			this.selectKyoshinSourceToolStripMenuItem.Size = new System.Drawing.Size(140, 20);
+			this.selectKyoshinSourceToolStripMenuItem.Text = "モニタ画像の取得元選択";
 			// 
 			// surfaceShindoStripMenuItem
 			// 
@@ -623,6 +534,12 @@
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
 			this.aboutToolStripMenuItem.Text = "このアプリケーションについて(&A)";
+			// 
+			// sortToolStripMenuItem
+			// 
+			this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
+			this.sortToolStripMenuItem.Size = new System.Drawing.Size(175, 20);
+			this.sortToolStripMenuItem.Text = "観測点コードに順に並び替える(&S)";
 			// 
 			// MainForm
 			// 
@@ -697,22 +614,12 @@
 		private System.Windows.Forms.ToolStripMenuItem surfaceShindoStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem boreholeShindoStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem loadAsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem importFromNiedToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem importFromEqWatchToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem loadPbfToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem loadCsvToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem loadMpkToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem loadMpkLz4ToolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem loadAsPbfToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem loadAsCsvToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem savePbfToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem saveCsvToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem saveAsPbfToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem saveAsCsvToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem sortToolStripMenuItem;
 	}
 }
 
