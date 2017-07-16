@@ -1,10 +1,10 @@
-# ƒ‰ƒCƒZƒ“ƒX
-‚ ‚Ü‚è‚É‚à‚Ğ‚Ç‚¢ƒ\[ƒXƒR[ƒh‚ª”Ã—”‚·‚é‚Ì‚ğ–h‚®‚½‚ßA`KyoshinShindoPlaceEditor`‚ÉŠÖ‚µ‚Ä‚Íˆø—p‚È‚Ç‚ÍŒ´‘¥‹Ö~‚Æ‚³‚¹‚Ä‚¢‚½‚¾‚«‚Ü‚·B
-‚Ç‚¤‚µ‚Ä‚àg‚¢‚½‚¢ê‡‚ª‚ ‚ê‚Î˜A—‚µ‚Ä‚¢‚½‚¾‚¯‚ê‚ÎŒÀ’è“I‚É‹–‰Â‚·‚éê‡‚à‚ ‚è‚Ü‚·B
+# ãƒ©ã‚¤ã‚»ãƒ³ã‚¹
+ã‚ã¾ã‚Šã«ã‚‚ã²ã©ã„ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰ãŒæ°¾æ¿«ã™ã‚‹ã®ã‚’é˜²ããŸã‚ã€`KyoshinShindoPlaceEditor`ã«é–¢ã—ã¦ã¯å¼•ç”¨ãªã©ã¯åŸå‰‡ç¦æ­¢ã¨ã•ã›ã¦ã„ãŸã ãã¾ã™ã€‚
+ã©ã†ã—ã¦ã‚‚ä½¿ã„ãŸã„å ´åˆãŒã‚ã‚Œã°é€£çµ¡ã—ã¦ã„ãŸã ã‘ã‚Œã°é™å®šçš„ã«è¨±å¯ã™ã‚‹å ´åˆã‚‚ã‚ã‚Šã¾ã™ã€‚
 
-`ReadDataExample`‚É‚Â‚¢‚Ä‚ÍÏ‚é‚È‚èÄ‚­‚È‚èD‚«‚É‚µ‚Ä‚­‚¾‚³‚¢B(Ú‚µ‚­‚ÍREADME.mdQÆ)
+`ReadDataExample`ã«ã¤ã„ã¦ã¯ç…®ã‚‹ãªã‚Šç„¼ããªã‚Šå¥½ãã«ã—ã¦ãã ã•ã„ã€‚(è©³ã—ãã¯README.mdå‚ç…§)
 
-# Protobuf-net
+# [Protobuf-net](https://github.com/mgravell/protobuf-net)
 The core Protocol Buffers technology is provided courtesy of Google.
 At the time of writing, this is released under the BSD license.
 Full details can be found here:
@@ -25,3 +25,51 @@ This .NET implementation is Copyright 2008 Marc Gravell
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+# [MessagePack](https://github.com/neuecc/MessagePack-CSharp)
+
+MessagePack for C#
+
+MIT License
+
+Copyright (c) 2017 Yoshifumi Kawai
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+lz4net
+
+Copyright (c) 2013-2017, Milosz Krajewski
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# System.ValueTuple
+[ãƒ©ã‚¤ã‚»ãƒ³ã‚¹å…¨æ–‡](https://www.microsoft.com/net/dotnet_library_license.htm)
+
+# System.Threading.Tasks.Extensions
+[ãƒ©ã‚¤ã‚»ãƒ³ã‚¹å…¨æ–‡](https://www.microsoft.com/net/dotnet_library_license.htm)

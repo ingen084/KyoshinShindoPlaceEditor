@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using KyoshinMonitorLib;
+using KyoshinShindoPlaceEditor.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,8 @@ namespace KyoshinShindoPlaceEditor
 
 		private MonitorSourceType _sourceType;
 
+		private string _lastFilePath = null;
+
 		private double MonitorZoom
 		{
 			get => _monitorZoom;
@@ -55,68 +58,54 @@ namespace KyoshinShindoPlaceEditor
 			importFromNiedToolStripMenuItem.Click += (s2, e2) => ImportNiedData();
 			importFromEqWatchToolStripMenuItem.Click += (s2, e2) => ImportEqWatchData();
 
-			loadPbfToolStripMenuItem.Click += (s2, e2) => LoadFromPbf(Properties.Settings.Default.PbfFilename);
-			loadCsvToolStripMenuItem.Click += (s2, e2) => LoadFromCsv(Properties.Settings.Default.CsvFilename);
+			sortToolStripMenuItem.Click += (s2, e2) =>
+			{
+				if (_points == null || !_points.Any())
+					return;
+				_points.Sort();
+				UpdateListValue();
+			};
 
-			savePbfToolStripMenuItem.Click += (s2, e2) => SaveToPbf(Properties.Settings.Default.PbfFilename);
-			saveCsvToolStripMenuItem.Click += (s2, e2) => SaveToCsv(Properties.Settings.Default.CsvFilename);
-
-			loadAsPbfToolStripMenuItem.Click += (s2, e2) =>
+			loadToolStripMenuItem.Click += (s2, e2) =>
 			{
 				var ofd = new OpenFileDialog()
 				{
-					FileName = Properties.Settings.Default.PbfFilename,
-					Filter = "pbfファイル(*.pbf)|*.pbf|すべてのファイル(*.*)|*.*",
+					FileName = Properties.Settings.Default.AutoLoadFilePath,
+					Filter = "全対応ファイル形式|*.mpk.lz4;*.mpk;*.pbf;*.json;*.csv|MessagePack(Lz4圧縮)(*.mpk.lz4)|*.mpk.lz4|MessagePack(*.mpk)|*.mpk|ProtocolBuffers(*.pbf)|*.pbf|JSON(*.json)|*.json|CSV(*.csv)|*.csv",
 					FilterIndex = 1,
-					Title = "読み込むpbfファイルを選択してください",
+					Title = "読み込むファイルを選択してください",
 					RestoreDirectory = true
 				};
+
 				if (ofd.ShowDialog() != DialogResult.OK)
 					return;
-				LoadFromPbf(ofd.FileName);
-			};
-			loadAsCsvToolStripMenuItem.Click += (s2, e2) =>
-			{
-				var ofd = new OpenFileDialog()
-				{
-					FileName = Properties.Settings.Default.CsvFilename,
-					Filter = "csvファイル(*.csv)|*.csv|すべてのファイル(*.*)|*.*",
-					FilterIndex = 1,
-					Title = "読み込むcsvファイルを選択してください",
-					RestoreDirectory = true
-				};
-				if (ofd.ShowDialog() != DialogResult.OK)
-					return;
-				LoadFromCsv(ofd.FileName);
+
+				LoadFile(ofd.FileName);
 			};
 
-			saveAsPbfToolStripMenuItem.Click += (s2, e2) =>
+			saveToolStripMenuItem.Click += (s2, e2) =>
+			{
+				if (string.IsNullOrWhiteSpace(_lastFilePath) || !File.Exists(_lastFilePath))
+					return;
+				if (MessageBox.Show(_lastFilePath + "に上書き保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+					return;
+
+				SaveFile(_lastFilePath);
+			};
+			saveAsToolStripMenuItem.Click += (s2, e2) =>
 			{
 				var sfd = new SaveFileDialog()
 				{
-					FileName = Properties.Settings.Default.PbfFilename,
-					Filter = "pbfファイル(*.pbf)|*.pbf|すべてのファイル(*.*)|*.*",
+					FileName = Properties.Settings.Default.AutoLoadFilePath,
+					Filter = "MessagePack(Lz4圧縮)(*.mpk.lz4)|*.mpk.lz4|MessagePack(*.mpk)|*.mpk|ProtocolBuffers(*.pbf)|*.pbf|JSON(*.json)|*.json|CSV(*.csv)|*.csv",
 					FilterIndex = 1,
-					Title = "保存するpbfファイルを選択してください",
+					Title = "保存するファイルを選択してください",
 					RestoreDirectory = true
 				};
 				if (sfd.ShowDialog() != DialogResult.OK)
 					return;
-				SaveToPbf(sfd.FileName, false);
-			};
-			saveAsCsvToolStripMenuItem.Click += (s2, e2) =>
-			{
-				var sfd = new SaveFileDialog()
-				{
-					FileName = Properties.Settings.Default.CsvFilename,
-					Filter = "csvファイル(*.csv)|*.csv|すべてのファイル(*.*)|*.*",
-					FilterIndex = 1,
-					Title = "保存するcsvファイルを選択してください",
-					RestoreDirectory = true
-				};
-				if (sfd.ShowDialog() != DialogResult.OK)
-					return;
-				SaveToCsv(sfd.FileName, false);
+
+				SaveFile(sfd.FileName);
 			};
 
 			aboutToolStripMenuItem.Click += (s2, e2) => new AboutForm().ShowDialog();
@@ -186,6 +175,12 @@ namespace KyoshinShindoPlaceEditor
 
 			_points = new List<ObservationPoint>();
 
+			if (File.Exists(Settings.Default.AutoLoadFilePath))
+			{
+				LoadFile(Settings.Default.AutoLoadFilePath);
+				return;
+			}
+
 			UpdateListValue();
 		}
 
@@ -215,8 +210,6 @@ namespace KyoshinShindoPlaceEditor
 
 			listView1.Items.Clear();
 
-			_points.Sort();
-
 			if (_points != null && _points.Any())
 				listView1.Items.AddRange(_points.Select(p => new ListViewItem(new string[] { p.Code, p.Type.ToNaturalString(), p.IsSuspended ? "はい" : "いいえ", p.Name, p.Region, p.Location.ToString(), p.Point == null ? "未設定" : p.Point.ToString() })).ToArray());
 
@@ -241,7 +234,7 @@ namespace KyoshinShindoPlaceEditor
 					if (point.IsSuspended)
 						color = Color.Gray;
 
-					canvas.SetPixel((int)((Point2)point.Point).X, (int)((Point2)point.Point).Y, color);
+					canvas.SetPixel(((Point2)point.Point).X, ((Point2)point.Point).Y, color);
 				}
 				interpolatedPictureBox4.Image = canvas;
 			}
@@ -298,7 +291,7 @@ namespace KyoshinShindoPlaceEditor
 
 		private void InterpolatedPictureBox2_MouseDown(object sender, MouseEventArgs e)
 		{
-			var clientpos = ((Point2)e.Location / MonitorZoom).Floor();
+			var clientpos = ((Point2)e.Location / (int)Math.Floor(MonitorZoom));
 			System.Diagnostics.Debug.WriteLine(clientpos);
 
 			if (e.Button == MouseButtons.Middle && _points.Any(p => p.Point == clientpos))
@@ -328,69 +321,79 @@ namespace KyoshinShindoPlaceEditor
 			UpdateListValue();
 		}
 
-		#region Save
-
-		private void SaveToPbf(string path, bool checkDialog = true)
+		private void SaveFile(string path)
 		{
-			if (checkDialog && MessageBox.Show(path + "に保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+			//csv
+			if (path.EndsWith(".csv"))
+			{
+				try
+				{
+					_points.SaveToCsv(path);
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("csv保存に失敗しました。\n" + ex, null);
+				}
+			}
+			//pbf
+			else if (path.EndsWith(".pbf"))
+			{
+				try
+				{
+					_points.SaveToPbf(path);
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("pbf保存に失敗しました。\n" + ex, null);
+				}
+			}
+			//mpk
+			else if (path.EndsWith(".mpk"))
+			{
+				try
+				{
+					_points.SaveToMpk(path);
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("mpk保存に失敗しました。\n" + ex, null);
+				}
+			}
+			//mpk+LZ4
+			else if (path.EndsWith(".mpk.lz4"))
+			{
+				try
+				{
+					_points.SaveToMpk(path, true);
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("mpk+lz4保存に失敗しました。\n" + ex, null);
+				}
+			}
+			//json
+			else if (path.EndsWith(".json"))
+			{
+				try
+				{
+					_points.SaveToJson(path);
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Json保存に失敗しました。\n" + ex, null);
+				}
+			}
+			else
+			{
+				MessageBox.Show("保存するファイルの種類を判別できませんでした。", null);
 				return;
-			try
-			{
-				using (var stream = new FileStream(path, FileMode.Create))
-					Serializer.Serialize(stream, _points);
-				UpdateListValue();
 			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("pbf保存に失敗しました。\n" + ex, null);
-			}
-		}
-
-		private void SaveToCsv(string path, bool checkDialog = true)
-		{
-			if (checkDialog && MessageBox.Show(path + "に保存してもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
-				return;
-			try
-			{
-				using (var stream = new StreamWriter(path))
-					foreach (var point in _points)
-						stream.WriteLine($"{(int)point.Type},{point.Code},{point.IsSuspended},{point.Name},{point.Region},{point.Location.Latitude},{point.Location.Longitude},{point.Point?.X.ToString() ?? ""},{point.Point?.Y.ToString() ?? ""},{point.ClassificationId?.ToString() ?? ""},{point.PrefectureClassificationId?.ToString() ?? ""}");
-				UpdateListValue();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("csv保存に失敗しました。\n" + ex, null);
-			}
-		}
-
-		#endregion Save
-
-		#region Load
-
-		private void LoadFromPbf(string path)
-		{
-			if (!File.Exists(path))
-			{
-				MessageBox.Show(path + "が見つかりません。", null);
-				return;
-			}
-
-			if (_points.Any() && MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
-				return;
-			try
-			{
-				using (var stream = new FileStream(path, FileMode.Open))
-					_points = Serializer.Deserialize<List<ObservationPoint>>(stream) ?? new List<ObservationPoint>();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("pbf読み込みに失敗しました。\n" + ex, null);
-			}
-
+			_lastFilePath = path;
+			saveToolStripMenuItem.Enabled = true;
 			UpdateListValue();
 		}
 
-		private void LoadFromCsv(string path)
+		private void LoadFile(string path)
 		{
 			if (!File.Exists(path))
 			{
@@ -398,58 +401,89 @@ namespace KyoshinShindoPlaceEditor
 				return;
 			}
 
-			if (_points.Any() && MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+			//csv
+			if (path.EndsWith(".csv"))
+			{
+				if (_points.Any() && MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+					return;
+				try
+				{
+					(ObservationPoint[] points, uint addedCount, uint errorCount) = ObservationPoint.LoadFromCsv(path);
+					_points = points.ToList();
+
+					UpdateListValue();
+					MessageBox.Show($"レポート\n成功:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("csv読み込みに失敗しました。\n" + ex, null);
+				}
+			}
+			//pbf
+			else if (path.EndsWith(".pbf"))
+			{
+				if (_points.Any() && MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+					return;
+				try
+				{
+					_points = ObservationPoint.LoadFromPbf(path).ToList();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("pbf読み込みに失敗しました。\n" + ex, null);
+				}
+			}
+			//mpk
+			else if (path.EndsWith(".mpk"))
+			{
+				if (_points.Any() && MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+					return;
+				try
+				{
+					_points = ObservationPoint.LoadFromMpk(path).ToList();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("mpk読み込みに失敗しました。\n" + ex, null);
+				}
+			}
+			//mpk+LZ4
+			else if (path.EndsWith(".mpk.lz4"))
+			{
+				if (_points.Any() && MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+					return;
+				try
+				{
+					_points = ObservationPoint.LoadFromMpk(path, true).ToList();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("mpk+lz4読み込みに失敗しました。\n" + ex, null);
+				}
+			}
+			//json
+			else if (path.EndsWith(".json"))
+			{
+				if (_points.Any() && MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
+					return;
+				try
+				{
+					_points = ObservationPoint.LoadFromJson(path).ToList();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Json読み込みに失敗しました。\n" + ex, null);
+				}
+			}
+			else
+			{
+				MessageBox.Show("読み込むファイルの種類を判別できませんでした。", null);
 				return;
-
-			var addedCount = 0;
-			var errorCount = 0;
-
-			_points = new List<ObservationPoint>();
-
-			try
-			{
-				using (var reader = new StreamReader(path))
-					while (reader.Peek() >= 0)
-						try
-						{
-							var strings = reader.ReadLine().Split(',');
-
-							var point = new ObservationPoint()
-							{
-								Type = (ObservationPointType)int.Parse(strings[0]),
-								Code = strings[1],
-								IsSuspended = bool.Parse(strings[2]),
-								Name = strings[3],
-								Region = strings[4],
-								Location = new Location(float.Parse(strings[5]), float.Parse(strings[6])),
-								Point = null
-							};
-							if (!string.IsNullOrWhiteSpace(strings[7]) && !string.IsNullOrWhiteSpace(strings[8]))
-								point.Point = new Point2(int.Parse(strings[7]), int.Parse(strings[8]));
-							if (strings.Length >= 11)
-							{
-								point.ClassificationId = int.Parse(strings[9]);
-								point.PrefectureClassificationId = int.Parse(strings[10]);
-							}
-							_points.Add(point);
-							addedCount++;
-						}
-						catch
-						{
-							errorCount++;
-						}
-
-				UpdateListValue();
-				MessageBox.Show($"レポート\n成功:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("csv読み込みに失敗しました。\n" + ex, null);
-				UpdateListValue();
-			}
+			_lastFilePath = path;
+			saveToolStripMenuItem.Enabled = true;
+			UpdateListValue();
 		}
-
-		#endregion Load
 
 		#region Import
 
@@ -599,10 +633,7 @@ namespace KyoshinShindoPlaceEditor
 
 		#endregion Import
 
-		private void RefleshKyoshinImage(object sender, EventArgs e)
-		{
-			UpdateImage();
-		}
+		private void RefleshKyoshinImage(object sender, EventArgs e) => UpdateImage();
 
 		private void BackgroundMapChanged(object sender, EventArgs e)
 		{

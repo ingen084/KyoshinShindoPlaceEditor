@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KyoshinMonitorLib;
+using System;
+using System.Drawing;
 
 namespace KyoshinShindoPlaceEditor
 {
@@ -9,19 +11,19 @@ namespace KyoshinShindoPlaceEditor
 		private static double _pixelsPerLonRadian = TileSize / (2 * Math.PI);
 		private static Point2 _origin = new Point2(128, 128);
 
-		public static Point2 LatLngToPoint(Location location)
+		public static PointF LatLngToPoint(Location location)
 		{
-			var point = new Point2()
+			var point = new PointF()
 			{
-				X = _origin.X + location.Longitude * _pixelsPerLonDegree
+				X = (float)(_origin.X + location.Longitude * _pixelsPerLonDegree)
 			};
 			var siny = Bound(Math.Sin(DegreesToRadians(location.Latitude)), -0.9999, 0.9999);
-			point.Y = _origin.Y + 0.5 * Math.Log((1 + siny) / (1 - siny)) * -_pixelsPerLonRadian;
+			point.Y = (float)(_origin.Y + 0.5 * Math.Log((1 + siny) / (1 - siny)) * -_pixelsPerLonRadian);
 
 			return point;
 		}
 
-		public static Location PointToLatLng(Point2 point)
+		public static Location PointToLatLng(PointF point)
 		{
 			var origin = _origin;
 			var lng = (point.X - _origin.X) / _pixelsPerLonDegree;
@@ -31,22 +33,22 @@ namespace KyoshinShindoPlaceEditor
 			return new Location() { Latitude = (float)lat, Longitude = (float)lng };
 		}
 
-		public static Point2 PointToPixel(Point2 point, double zoom = 0)
+		public static Point2 PointToPixel(PointF point, double zoom = 0)
 		{
 			var pixel = new Point2()
 			{
-				X = point.X * Math.Pow(2, zoom),
-				Y = point.Y * Math.Pow(2, zoom)
+				X = (int)(point.X * Math.Pow(2, zoom)),
+				Y = (int)(point.Y * Math.Pow(2, zoom))
 			};
 			return pixel;
 		}
 
-		public static Point2 PixelToPoint(Point2 point, double zoom = 0)
+		public static PointF PixelToPoint(Point2 point, double zoom = 0)
 		{
-			var pixel = new Point2()
+			var pixel = new PointF()
 			{
-				X = point.X / Math.Pow(2, zoom),
-				Y = point.Y / Math.Pow(2, zoom)
+				X = (float)(point.X / Math.Pow(2, zoom)),
+				Y = (float)(point.Y / Math.Pow(2, zoom))
 			};
 			return pixel;
 		}
