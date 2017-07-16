@@ -2,7 +2,10 @@
 あまりにもひどいソースコードが氾濫するのを防ぐため、`KyoshinShindoPlaceEditor`に関しては引用などは原則禁止とさせていただきます。
 どうしても使いたい場合があれば連絡していただければ限定的に許可する場合もあります。
 
-`ReadDataExample`については煮るなり焼くなり好きにしてください。(詳しくはREADME.md参照)
+自作ソフトウェアに同梱しての再配布などはREADMEの二次配布の手引を参照してください。
+
+# [KyoshinMonitorLib](https://github.com/ingen084/KyoshinMonitorLib)
+ライセンスはリンク参照
 
 # [Protobuf-net](https://github.com/mgravell/protobuf-net)
 The core Protocol Buffers technology is provided courtesy of Google.
