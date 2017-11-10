@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>KyoshinShindoPlaceEditor</RootNamespace>
     <AssemblyName>KyoshinShindoPlaceEditor</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -35,9 +35,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -102,8 +99,8 @@
     <Content Include="minimap.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KyoshinMonitorLib\KyoshinMonitorLib\KyoshinMonitorLib.csproj">
-      <Project>{cc14f41e-11a6-43d3-9a68-31f784e3c252}</Project>
+    <ProjectReference Include="..\KyoshinMonitorLib\src\KyoshinMonitorLib\KyoshinMonitorLib.csproj">
+      <Project>{a27d0255-3949-478f-981e-920f98c43a65}</Project>
       <Name>KyoshinMonitorLib</Name>
     </ProjectReference>
   </ItemGroup>
