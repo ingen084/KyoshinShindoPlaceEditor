@@ -71,7 +71,7 @@ namespace KyoshinShindoPlaceEditor
 				var ofd = new OpenFileDialog()
 				{
 					FileName = Properties.Settings.Default.AutoLoadFilePath,
-					Filter = "全対応ファイル形式|*.mpk.lz4;*.mpk;*.pbf;*.json;*.csv|MessagePack(Lz4圧縮)(*.mpk.lz4)|*.mpk.lz4|MessagePack(*.mpk)|*.mpk|ProtocolBuffers(*.pbf)|*.pbf|JSON(*.json)|*.json|CSV(*.csv)|*.csv",
+					Filter = "全対応ファイル形式|*.mpk.lz4;*.mpk;*.json;*.csv|MessagePack(Lz4圧縮)(*.mpk.lz4)|*.mpk.lz4|MessagePack(*.mpk)|*.mpk|JSON(*.json)|*.json|CSV(*.csv)|*.csv",
 					FilterIndex = 1,
 					Title = "読み込むファイルを選択してください",
 					RestoreDirectory = true
@@ -335,18 +335,6 @@ namespace KyoshinShindoPlaceEditor
 					MessageBox.Show("csv保存に失敗しました。\n" + ex, null);
 				}
 			}
-			//pbf
-			else if (path.EndsWith(".pbf"))
-			{
-				try
-				{
-					_points.SaveToPbf(path);
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("pbf保存に失敗しました。\n" + ex, null);
-				}
-			}
 			//mpk
 			else if (path.EndsWith(".mpk"))
 			{
@@ -417,20 +405,6 @@ namespace KyoshinShindoPlaceEditor
 				catch (Exception ex)
 				{
 					MessageBox.Show("csv読み込みに失敗しました。\n" + ex, null);
-				}
-			}
-			//pbf
-			else if (path.EndsWith(".pbf"))
-			{
-				if (_points.Any() && MessageBox.Show("現状読み込まれているデータはすべて上書きされます。読み込んでもよろしいですか？", "確認", MessageBoxButtons.YesNo) == DialogResult.No)
-					return;
-				try
-				{
-					_points = ObservationPoint.LoadFromPbf(path).ToList();
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("pbf読み込みに失敗しました。\n" + ex, null);
 				}
 			}
 			//mpk
@@ -537,7 +511,16 @@ namespace KyoshinShindoPlaceEditor
 								while (_points.Any(p => p.Code == $"_EQW{addId}"))
 									addId++;
 
-								point = new ObservationPoint(strings[2].ToObservationPointType(), $"_EQW{addId}", strings[0] == "0", strings[3], strings[4], new Location(float.Parse(strings[8]), float.Parse(strings[7])), new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12])));
+								point = new ObservationPoint
+								{
+									Type = strings[2].ToObservationPointType(),
+									Code = $"_EQW{addId}",
+									IsSuspended = strings[0] == "0",
+									Name = strings[3],
+									Region = strings[4],
+									Location = new Location(float.Parse(strings[8]), float.Parse(strings[7])),
+									Point = new Point2(int.Parse(strings[9]) + int.Parse(strings[11]), int.Parse(strings[10]) + int.Parse(strings[12])),
+								};
 								_points.Add(point);
 								addedCount++;
 								addId++;
@@ -579,6 +562,7 @@ namespace KyoshinShindoPlaceEditor
 
 			var addedCount = 0;
 			var errorCount = 0;
+			var updateCount = 0;
 
 			try
 			{
@@ -589,11 +573,26 @@ namespace KyoshinShindoPlaceEditor
 						{
 							var strings = reader.ReadLine().Split(',');
 
-							//発見したら帰る
-							if (_points.Any(p => p.Type == ObservationPointType.KiK_net && p.Code == strings[0] && p.Name == strings[1] && p.Region == strings[7]))
+							ObservationPoint point;
+							//発見したら情報のアップデートを行う
+							if ((point = _points.FirstOrDefault(p => p.Type == ObservationPointType.KiK_net && p.Code == strings[0] && p.Name == strings[1] && p.Region == strings[7])) != null)
+							{
+								point.OldLocation = new Location(float.Parse(strings[9]), float.Parse(strings[10]));
+								point.Location = new Location(float.Parse(strings[3]), float.Parse(strings[4]));
+								updateCount++;
 								continue;
+							}
 
-							_points.Add(new ObservationPoint(ObservationPointType.KiK_net, strings[0], strings[13] == "suspension", strings[1], strings[7], new Location(float.Parse(strings[3]), float.Parse(strings[4]))));
+							_points.Add(new ObservationPoint
+							{
+								Type = ObservationPointType.KiK_net,
+								Code = strings[0],
+								IsSuspended = strings[13] == "suspension",
+								Name = strings[1],
+								Region = strings[7],
+								Location = new Location(float.Parse(strings[3]), float.Parse(strings[4])),
+								OldLocation = new Location(float.Parse(strings[9]), float.Parse(strings[10]))
+							});
 							addedCount++;
 						}
 						catch
@@ -608,11 +607,26 @@ namespace KyoshinShindoPlaceEditor
 						{
 							var strings = reader.ReadLine().Split(',');
 
-							//発見したら帰る
-							if (_points.Any(p => p.Type == ObservationPointType.K_NET && p.Code == strings[0] && p.Name == strings[1] && p.Region == strings[7]))
+							ObservationPoint point;
+							//発見したら情報のアップデートを行う
+							if ((point = _points.FirstOrDefault(p => p.Type == ObservationPointType.K_NET && p.Code == strings[0] && p.Name == strings[1] && p.Region == strings[7])) != null)
+							{
+								point.OldLocation = new Location(float.Parse(strings[9]), float.Parse(strings[10]));
+								point.Location = new Location(float.Parse(strings[3]), float.Parse(strings[4]));
+								updateCount++;
 								continue;
+							}
 
-							_points.Add(new ObservationPoint(ObservationPointType.K_NET, strings[0], strings[13] == "suspension", strings[1], strings[7], new Location(float.Parse(strings[3]), float.Parse(strings[4]))));
+							_points.Add(new ObservationPoint
+							{
+								Type = ObservationPointType.K_NET,
+								Code = strings[0],
+								IsSuspended = strings[13] == "suspension",
+								Name = strings[1],
+								Region = strings[7],
+								Location = new Location(float.Parse(strings[3]), float.Parse(strings[4])),
+								OldLocation = new Location(float.Parse(strings[9]), float.Parse(strings[10]))
+							});
 							addedCount++;
 						}
 						catch
@@ -622,7 +636,7 @@ namespace KyoshinShindoPlaceEditor
 					}
 
 				UpdateListValue();
-				MessageBox.Show($"レポート\n置き換え:非対応\n追加:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show($"レポート\n置き換え:非対応\n追加:{addedCount}件\n置換:{updateCount}\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch (Exception ex)
 			{
