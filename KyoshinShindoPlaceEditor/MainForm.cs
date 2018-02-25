@@ -535,7 +535,7 @@ namespace KyoshinShindoPlaceEditor
 					}
 				}
 				UpdateListValue();
-				MessageBox.Show($"レポート\n置き換え:{replaceCount}件\n追加:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show($"レポート\n置換:{replaceCount}件\n追加:{addedCount}件\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch (Exception ex)
 			{
@@ -636,7 +636,7 @@ namespace KyoshinShindoPlaceEditor
 					}
 
 				UpdateListValue();
-				MessageBox.Show($"レポート\n置き換え:非対応\n追加:{addedCount}件\n置換:{updateCount}\n失敗:{errorCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show($"レポート\n置換:非対応\n追加:{addedCount}件\n失敗:{errorCount}件\n更新:{updateCount}件", "処理終了", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch (Exception ex)
 			{
