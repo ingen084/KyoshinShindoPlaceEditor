@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KyoshinShindoPlaceEditor", "KyoshinShindoPlaceEditor\KyoshinShindoPlaceEditor.csproj", "{129D9EB5-7ECE-4A3F-A032-0E23444C0644}"
 EndProject
@@ -10,10 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KyoshinMonitorLib", "KyoshinMonitorLib\src\KyoshinMonitorLib\KyoshinMonitorLib.csproj", "{A27D0255-3949-478F-981E-920F98C43A65}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KyoshinMonitorLib.Images", "KyoshinMonitorLib\src\KyoshinMonitorLib.Images\KyoshinMonitorLib.Images.csproj", "{514ABA94-203C-4934-8A91-64E096CBA0DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +21,6 @@ Global
 		{129D9EB5-7ECE-4A3F-A032-0E23444C0644}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{129D9EB5-7ECE-4A3F-A032-0E23444C0644}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{129D9EB5-7ECE-4A3F-A032-0E23444C0644}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A27D0255-3949-478F-981E-920F98C43A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A27D0255-3949-478F-981E-920F98C43A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A27D0255-3949-478F-981E-920F98C43A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A27D0255-3949-478F-981E-920F98C43A65}.Release|Any CPU.Build.0 = Release|Any CPU
-		{514ABA94-203C-4934-8A91-64E096CBA0DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{514ABA94-203C-4934-8A91-64E096CBA0DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{514ABA94-203C-4934-8A91-64E096CBA0DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{514ABA94-203C-4934-8A91-64E096CBA0DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

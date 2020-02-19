@@ -125,7 +125,7 @@ namespace KyoshinShindoPlaceEditor
 				UpdateImage();
 			};
 
-			interpolatedPictureBox3.ImageLocation = "http://www.kmoni.bosai.go.jp/new/data/map_img/CommonImg/base_map_w.gif";
+			interpolatedPictureBox3.ImageLocation = "http://www.kmoni.bosai.go.jp/data/map_img/CommonImg/base_map_w.gif";
 
 			interpolatedPictureBox4.MouseDown += (s2, e2) =>
 			{
@@ -188,9 +188,9 @@ namespace KyoshinShindoPlaceEditor
 		{
 			var startTime = DateTime.Now.AddSeconds(-10);
 			if (_sourceType == MonitorSourceType.SurfaceShindo)
-				interpolatedPictureBox2.ImageLocation = "http://www.kmoni.bosai.go.jp/new/data/map_img/RealTimeImg/jma_s/" + startTime.ToString("yyyyMMdd") + "/" + startTime.ToString("yyyyMMddHHmmss") + ".jma_s.gif";
+				interpolatedPictureBox2.ImageLocation = "http://www.kmoni.bosai.go.jp/data/map_img/RealTimeImg/jma_s/" + startTime.ToString("yyyyMMdd") + "/" + startTime.ToString("yyyyMMddHHmmss") + ".jma_s.gif";
 			else if (_sourceType == MonitorSourceType.BoreholeShindo)
-				interpolatedPictureBox2.ImageLocation = "http://www.kmoni.bosai.go.jp/new/data/map_img/RealTimeImg/jma_b/" + startTime.ToString("yyyyMMdd") + "/" + startTime.ToString("yyyyMMddHHmmss") + ".jma_b.gif";
+				interpolatedPictureBox2.ImageLocation = "http://www.kmoni.bosai.go.jp/data/map_img/RealTimeImg/jma_b/" + startTime.ToString("yyyyMMdd") + "/" + startTime.ToString("yyyyMMddHHmmss") + ".jma_b.gif";
 		}
 
 		private void UpdateListValue()
@@ -654,7 +654,7 @@ namespace KyoshinShindoPlaceEditor
 			if (checkBox1.Checked)
 				interpolatedPictureBox3.ImageLocation = "";
 			else
-				interpolatedPictureBox3.ImageLocation = "http://www.kmoni.bosai.go.jp/new/data/map_img/CommonImg/base_map_w.gif";
+				interpolatedPictureBox3.ImageLocation = "http://www.kmoni.bosai.go.jp/data/map_img/CommonImg/base_map_w.gif";
 		}
 
 		private void PointMapChanged(object sender, EventArgs e)
